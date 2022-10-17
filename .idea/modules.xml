@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Plant-vs-Zombies.iml" filepath="$PROJECT_DIR$/.idea/Plant-vs-Zombies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Facultad/Ciencias de la Computación/4to Semestre/Paradigmas de Programación/Proyecto viejo/VegetalesContraNoMuertos/VegetalesContraNoMuertos.iml" filepath="$PROJECT_DIR$/../../../Facultad/Ciencias de la Computación/4to Semestre/Paradigmas de Programación/Proyecto viejo/VegetalesContraNoMuertos/VegetalesContraNoMuertos.iml" />
     </modules>
   </component>
 </project>
