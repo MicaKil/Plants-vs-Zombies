@@ -1,5 +1,9 @@
-package plantVsZombies;
+/*
+Zombi Caracubo: Su cubo lo hace el más resistente de los zombis comunes y corriente. Magnetoseta
+puede quitarle el cubo.
+ */
 
+package plantVsZombies;
 public class Caracubo extends Zombie {
     public Caracubo (int coorX) {
         super(coorX);

@@ -1,3 +1,6 @@
+/*
+Zombi: Zombi de jardín común, no tiene nada en especial.
+ */
 package plantVsZombies;
 
 public class Zombie {

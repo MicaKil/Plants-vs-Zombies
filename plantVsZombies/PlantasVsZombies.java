@@ -1,5 +1,5 @@
 
-package plantasvszombies;
+package plantVsZombies;
 
 public class PlantasVsZombies {
 
