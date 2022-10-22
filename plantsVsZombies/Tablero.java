@@ -1,21 +1,15 @@
+package plantsVsZombies;
 
-package plantasvszombies;
 import java.util.Random;
 
 public class Tablero {
     // no se si sería privado o protegido
-    protected char[][] tablero = new char[5][10];
     protected Planta[][] tableroP = new Planta[5][10]; // tablero en el que van a estar los objetos planta
     protected Zombie[][] tableroZ = new Zombie[5][10]; // tablero en el que van a estar los objetos zombies
     protected int soles=200;
     
-    public Tablero() {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 10; j++) {
-                this.tablero[i][j] = ' ';
-            }
-        }
-    }
+    public Tablero() {}
+
     public void mostrarTablero() {
         System.out.println("Tablero del juego:");
         System.out.println();
@@ -24,45 +18,12 @@ public class Tablero {
         for (int i = 0; i < 5; i++) {
             System.out.printf("%d | ", i + 1);
             for (int j = 0; j < 10; j++) {
-                if (this.tablero[i][j] == ' ')
-                    System.out.print("_ ");
-                else
-                    System.out.print(this.tablero[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    public void mostrarTableroP() {
-        System.out.println("Tablero de las Plantas:");
-        System.out.println();
-        System.out.println("   1 2 3 4 5 6 7 8 9 10");
-        System.out.println("   ____________________");
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("%d | ", i + 1);
-            for (int j = 0; j < 10; j++) {
-                if (this.tableroP[i][j] == null)
-                    System.out.print("_ ");
-                else
+                if (this.tableroP[i][j] != null) {
                     System.out.print(this.tableroP[i][j].id + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-    public void mostrarTableroZ() {
-        System.out.println("Tablero de los Zombies: ");
-        System.out.println();
-        System.out.println("   1 2 3 4 5 6 7 8 9 10");
-        System.out.println("   ____________________");
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("%d | ", i + 1);
-            for (int j = 0; j < 10; j++) {
-                if (this.tableroZ[i][j] == null)
-                    System.out.print("_ ");
-                else
+                } else if (this.tableroZ[i][j] != null) {
                     System.out.print(this.tableroZ[i][j].id + " ");
+                } else
+                    System.out.print("_ ");
             }
             System.out.println();
         }
@@ -88,7 +49,20 @@ public class Tablero {
             default -> System.out.println("Error al crear zombie.");
         }
         this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
-        this.tablero[fila][9] = nuevoZombie.id;
+    }
+
+    // caminan todos los zombies del tablero
+    public void caminar () {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (this.tableroZ[i][j] != null && this.tableroZ[i][j].avanzar) {
+                    this.tableroZ[i][j].y -= 1;
+                    this.tableroZ[i][j - 1] = this.tableroZ[i][j];
+                    this.tableroZ[i][j] = null;
+
+                }
+            }
+        }
     }
 
     public int getSoles() {

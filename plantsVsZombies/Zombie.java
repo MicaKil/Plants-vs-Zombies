@@ -11,6 +11,8 @@ public class Zombie {
     protected int danio; // el daño que realiza al atacar
     protected boolean ralentizado; // si ha sido ralentizado
 
+    protected boolean avanzar;
+
     public Zombie(int coorX) {
         this.id = 'Z';
         this.x = coorX;
@@ -18,7 +20,9 @@ public class Zombie {
         this.vida = 100;
         this.danio = 25;
         this.ralentizado = false;
+        this.avanzar = true;
     }
+
 
     public char getId() {
         return this.id;
