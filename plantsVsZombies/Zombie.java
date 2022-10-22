@@ -1,7 +1,7 @@
 /*
 Zombi: Zombi de jardín común, no tiene nada en especial.
  */
-package plantVsZombies;
+package plantsVsZombies;
 
 public class Zombie {
     protected char id; // char con el que se va identificar por pantalla

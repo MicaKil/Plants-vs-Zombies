@@ -2,7 +2,7 @@
 • Guisantralladora: Dispara cuatro guisantes a la vez. Para plantarla en el patio se necesita estar
 plantada sobre una Repetidora. Su coste es de 250 soles.
  */
-package plantVsZombies;
+package plantsVsZombies;
 
 //poner como subclase pq necesita al lanzaguisantes para plantar
 public class Guisantralladora extends Planta {

@@ -2,7 +2,7 @@
 Zombi Abanderado: Marca la llegada de un asalto de zombis.
  */
 
-package plantVsZombies;
+package plantsVsZombies;
 
 public class Abanderado extends Zombie {
     public Abanderado(int coorX) {

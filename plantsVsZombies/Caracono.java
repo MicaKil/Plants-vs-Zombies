@@ -2,7 +2,7 @@
 Zombi Caracono: Su cono lo hace un poco más resistente que el zombi básico.
  */
 
-package plantVsZombies;
+package plantsVsZombies;
 public class Caracono extends Zombie {
     public Caracono(int coorX) {
         super(coorX);

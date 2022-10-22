@@ -2,7 +2,7 @@
 • Repetidora: Es como el lanzaguisantes, con la diferencia de que dispara 2 guisantes a la vez. Tiene
 un coste de 200 soles
  */
-package plantVsZombies;
+package plantsVsZombies;
 //poner como subclase de lanzaguisantes? --> tal vez no pq no necesita un lanzaguisantes de base
 
 public class Repetidora extends Planta {
