@@ -1,5 +1,5 @@
-package plantsVsZombies;
 
+package plantasvszombies;
 import java.util.Random;
 
 public class Tablero {
@@ -7,12 +7,12 @@ public class Tablero {
     protected char[][] tablero = new char[5][10];
     protected Planta[][] tableroP = new Planta[5][10]; // tablero en el que van a estar los objetos planta
     protected Zombie[][] tableroZ = new Zombie[5][10]; // tablero en el que van a estar los objetos zombies
-
+    protected int soles=200;
+    
     public Tablero() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 this.tablero[i][j] = ' ';
-
             }
         }
     }
@@ -90,4 +90,10 @@ public class Tablero {
         this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
         this.tablero[fila][9] = nuevoZombie.id;
     }
+
+    public int getSoles() {
+        return soles;
+    }
+    
+    
 }
