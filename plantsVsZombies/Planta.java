@@ -1,7 +1,7 @@
 /*
 tienen distinta vida los distintos lanzaguisantes?? 
  */
-package plantVsZombies;
+package plantsVsZombies;
 
 
 public class Planta {

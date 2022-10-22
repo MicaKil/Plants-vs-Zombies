@@ -3,7 +3,7 @@ Zombi Caracubo: Su cubo lo hace el más resistente de los zombis comunes y corri
 puede quitarle el cubo.
  */
 
-package plantVsZombies;
+package plantsVsZombies;
 public class Caracubo extends Zombie {
     public Caracubo (int coorX) {
         super(coorX);
