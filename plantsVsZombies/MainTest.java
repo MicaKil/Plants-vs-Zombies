@@ -6,6 +6,8 @@ public class MainTest {
     public static void main(String[] args) {
         Zombie zombie = new Abanderado(17);
         System.out.println(zombie.getX());
+        Tablero T = new Tablero();
+        T.mostrarTablero();
     }
 
 }
