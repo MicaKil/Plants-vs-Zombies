@@ -17,6 +17,8 @@ public class Tablero {
         }
     }
     public void mostrarTablero() {
+        System.out.println("Tablero del juego:");
+        System.out.println();
         System.out.println("   1 2 3 4 5 6 7 8 9 10");
         System.out.println("   ____________________");
         for (int i = 0; i < 5; i++) {
@@ -29,9 +31,12 @@ public class Tablero {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void mostrarTableroP() {
+        System.out.println("Tablero de las Plantas:");
+        System.out.println();
         System.out.println("   1 2 3 4 5 6 7 8 9 10");
         System.out.println("   ____________________");
         for (int i = 0; i < 5; i++) {
@@ -44,8 +49,11 @@ public class Tablero {
             }
             System.out.println();
         }
+        System.out.println();
     }
     public void mostrarTableroZ() {
+        System.out.println("Tablero de los Zombies: ");
+        System.out.println();
         System.out.println("   1 2 3 4 5 6 7 8 9 10");
         System.out.println("   ____________________");
         for (int i = 0; i < 5; i++) {
@@ -58,12 +66,18 @@ public class Tablero {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void crearZombie() {
         Random rand = new Random();
         int n = rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
-        int fila = rand.nextInt(5); // fila en la que va a aparecer el nuevo zombie
+        int fila;
+        // en caso de que se genere un zombie en una casilla ocupada
+        do {
+            fila = rand.nextInt(5); // fila en la que va a aparecer el nuevo zombie
+        } while (this.tableroZ[fila][9] != null);
+
         Zombie nuevoZombie = null;
         switch (n) {
             case 0 -> nuevoZombie = new Zombie(fila);
@@ -73,6 +87,7 @@ public class Tablero {
             case 4 -> nuevoZombie = new Lector(fila);
             default -> System.out.println("Error al crear zombie.");
         }
-        this.tableroZ[fila][9] = nuevoZombie;
+        this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
+        this.tablero[fila][9] = nuevoZombie.id;
     }
 }
