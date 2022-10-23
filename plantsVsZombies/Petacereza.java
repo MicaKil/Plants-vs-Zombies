@@ -9,6 +9,7 @@ public class Petacereza extends Planta {
         super(x,y);
         //rango
         this.danio=150;
+        this.id='C';
     }
     
 }

@@ -10,6 +10,7 @@ public class Nuez extends Planta {
         this.costo=50;
         this.danio=0;
         this.vida=200; //probar
+        this.id='N';
     }
     
 }

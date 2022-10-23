@@ -10,7 +10,7 @@ public class Saltador extends Zombie {
         this.id = 'S';
     }
     protected boolean haSaltado = false;
-    /*
+    /* fail de salto
     public void saltar (Tablero tablero, Zombie zombie) {
         int j = 9;
         int i = zombie.y;

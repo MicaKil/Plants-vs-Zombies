@@ -2,8 +2,6 @@
 tienen distinta vida los distintos lanzaguisantes?? 
  */
 package plantsVsZombies;
-
-
 public class Planta {
     protected char id; //nombre que aparece en la pantalla
     protected int vida;
@@ -16,7 +14,6 @@ public class Planta {
     //max coorX
     
     public Planta(int x, int y){
-        this.id='P';
         this.vida=100;
         this.danio=25;
         this.costo=100;

@@ -12,6 +12,7 @@ public class Hielaguisantes extends Planta {
         super(x,y);
         this.danio=175;
         this.realentiza=true;
+        this.id='H';
         
     }
 }

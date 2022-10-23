@@ -16,6 +16,7 @@ public class Girasol extends Planta {
         this.generaSol=25;
         this.costo=50;
         this.danio=0;
+        this.id='G';
         
     }
 }

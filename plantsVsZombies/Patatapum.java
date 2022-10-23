@@ -4,7 +4,6 @@ Tiene un coste de 25 soles.
  */
 package plantsVsZombies;
 
-
 public class Patatapum extends Planta {
     protected int tiempoActivacion; //1 turno?
     public Patatapum(int x, int y){
@@ -13,6 +12,7 @@ public class Patatapum extends Planta {
         //tiene vida?
         this.danio=50; //cuanto daño hace? en la wiki dice 1800 
         //hace daño solo en el cuadro? (x,y) o en un rango o linea? 
+        this.id='T';
     }
     
 }

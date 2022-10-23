@@ -12,6 +12,7 @@ public class Birasol extends Planta {
         this.generaSol=50;
         this.costo=150;
         this.danio=0;
+        this.id = 'B';
         
     }
     
