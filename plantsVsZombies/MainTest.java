@@ -15,9 +15,7 @@ public class MainTest {
         T.avanzarZombies();
         T.mostrarTablero();
         T.crearZombie();
-        T.mostrarTablero();
         T.crearZombie();
-        T.mostrarTablero();
         T.crearZombie();
         T.mostrarTablero();
     }
