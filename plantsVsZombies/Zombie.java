@@ -47,4 +47,7 @@ public class Zombie {
     public boolean isRalentizado() {
         return this.ralentizado;
     }
+    public void setRalentizado(boolean ralentizado) {
+        this.ralentizado = ralentizado;
+    }
 }
