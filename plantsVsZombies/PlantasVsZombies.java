@@ -59,6 +59,7 @@ public class PlantasVsZombies {
             boolean flagPlantas;
             //bucle de compra
             while (comprarFlag) {
+                
                 //agregar opcion para cancelar, volver a elegir coordenada, salir del menu de compra
                 //en el primer turno solo puede comprar girasoles
                 System.out.println("Tiene: " + T.getSoles() + " soles disponibles para comprar.");
@@ -187,7 +188,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Lanzaguisantes l = new Lanzaguisantes(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Lanzaguisantes l = new Lanzaguisantes(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(l);
                                     System.out.println("ID de la planta: L");
@@ -244,7 +245,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Repetidora r = new Repetidora(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Repetidora r = new Repetidora(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(r);
                                     System.out.println("ID de la planta: R");
@@ -301,7 +302,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Hielaguisantes h = new Hielaguisantes(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Hielaguisantes h = new Hielaguisantes(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(h);
                                     System.out.println("ID de la planta: H");
@@ -358,7 +359,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Nuez n = new Nuez(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Nuez n = new Nuez(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(n);
                                     System.out.println("ID de la planta: N");
@@ -415,7 +416,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Patatapum pt = new Patatapum(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Patatapum pt = new Patatapum(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(pt);
                                     System.out.println("ID de la planta: T");
@@ -472,7 +473,7 @@ public class PlantasVsZombies {
                                             System.out.println("Debe ingresar un número del 1 al 10");
                                         }
                                     }
-                                    Petacereza p = new Petacereza(Integer.parseInt(fila), Integer.parseInt(columna));
+                                    Petacereza p = new Petacereza(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
                                     //agregar planta al tablero
                                     T.plantar(p);
                                     System.out.println("ID de la planta: C");
@@ -487,16 +488,8 @@ public class PlantasVsZombies {
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Debe ingresar un número");
-                    }
-                    if (T.getSoles() < 25) {
-                        System.out.println("Se quedó sin soles, pasará a la fase de ataque");
-                    } else {
-                        System.out.println("Si desea seguir comprando ingrese S o s. Si desea continuar sin comprar apriete cualquier letra");
-                        String rta = read.nextLine();
-                        if (!rta.equals("S") && !rta.equals("s")) { //se termina el bucle de compra
-                            comprarFlag = false;
                         }
-                    }
+                comprarFlag = T.getSoles() >= 25;        
                 }
             }
             // suma uno al terminar de comprar
