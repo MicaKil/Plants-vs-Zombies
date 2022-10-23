@@ -10,6 +10,12 @@ public class Tablero {
     
     public Tablero() {}
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_RED = "\u001B[31m";
+
+    public static final String ANSI_GREEN = "\u001B[32m";
+
     public void mostrarTablero() {
         System.out.println("Tablero del juego:");
         System.out.println();
@@ -19,9 +25,9 @@ public class Tablero {
             System.out.printf("%d | ", i + 1);
             for (int j = 0; j < 10; j++) {
                 if (this.tableroP[i][j] != null) {
-                    System.out.print(this.tableroP[i][j].id + " ");
+                    System.out.print(ANSI_GREEN + this.tableroP[i][j].id + " " + ANSI_RESET);
                 } else if (this.tableroZ[i][j] != null) {
-                    System.out.print(this.tableroZ[i][j].id + " ");
+                    System.out.print(ANSI_RED + this.tableroZ[i][j].id + " " + ANSI_RESET);
                 } else
                     System.out.print("_ ");
             }
@@ -52,14 +58,13 @@ public class Tablero {
     }
 
     // caminan todos los zombies del tablero
-    public void caminar () {
+    public void avanzarZombies() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 if (this.tableroZ[i][j] != null && this.tableroZ[i][j].avanzar) {
                     this.tableroZ[i][j].y -= 1;
                     this.tableroZ[i][j - 1] = this.tableroZ[i][j];
                     this.tableroZ[i][j] = null;
-
                 }
             }
         }
@@ -68,6 +73,8 @@ public class Tablero {
     public int getSoles() {
         return soles;
     }
-    
-    
+
+    public void setSoles(int soles) {
+        this.soles = soles;
+    }
 }

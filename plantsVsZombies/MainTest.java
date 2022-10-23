@@ -8,7 +8,17 @@ public class MainTest {
         T.mostrarTablero();
         T.crearZombie();
         T.mostrarTablero();
-        T.caminar();
+        T.avanzarZombies();
+        T.mostrarTablero();
+        T.crearZombie();
+        T.mostrarTablero();
+        T.avanzarZombies();
+        T.mostrarTablero();
+        T.crearZombie();
+        T.mostrarTablero();
+        T.crearZombie();
+        T.mostrarTablero();
+        T.crearZombie();
         T.mostrarTablero();
     }
 
