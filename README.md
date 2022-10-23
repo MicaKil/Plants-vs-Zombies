@@ -1,2 +1,2 @@
-# Plant-vs-Zombies
+# Plants-vs-Zombies
 Implementación de Plant vs Zombies en Java.
