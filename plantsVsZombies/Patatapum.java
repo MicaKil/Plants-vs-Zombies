@@ -5,14 +5,31 @@ Tiene un coste de 25 soles.
 package plantsVsZombies;
 
 public class Patatapum extends Planta {
-    protected int tiempoActivacion; //1 turno?
+    protected int tiempoActivacion=1; //1 turno para que explote
+    protected boolean explotar=false;
     public Patatapum(int x, int y){
         super(x,y);
         this.costo=25;
-        //tiene vida?
-        this.danio=50; //cuanto daño hace? en la wiki dice 1800 
-        //hace daño solo en el cuadro? (x,y) o en un rango o linea? 
+        this.danio=75; 
         this.id='T';
     }
     
+    @Override
+    public void atacar(Planta p, Zombie[][] z, Planta[][] t){
+        int i = p.x;
+        int j=p.y;
+        if (this.explotar){
+            t[i][j]=null;
+            z[i][j].setVida(z[i][j].getVida()-p.danio);
+            System.out.println("PUM!");           
+        }
+        else {
+            if (z[i][j+1]!=null && z[i][j+1] instanceof Zombie){
+                this.explotar=true;
+            }
+        
+        }
+    }
 }
+    
+
