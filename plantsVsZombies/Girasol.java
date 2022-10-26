@@ -19,4 +19,9 @@ public class Girasol extends Planta {
         this.id='G';
         
     }
+    
+    @Override
+    public void atacar(Planta p, Tablero t){
+        t.setSoles(t.getSoles()+this.generaSol);
+    }
 }

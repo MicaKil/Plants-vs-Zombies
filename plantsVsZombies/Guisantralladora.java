@@ -6,7 +6,7 @@ package plantsVsZombies;
 
 //poner como subclase pq necesita al lanzaguisantes para plantar
 public class Guisantralladora extends Planta {
-    protected boolean predecesor; //plantear bien esta exigencia
+    //protected boolean predecesor; //plantear bien esta exigencia
     public Guisantralladora(int x, int y){
         super(x,y);
         this.danio=200;

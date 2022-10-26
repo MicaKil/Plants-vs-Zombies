@@ -6,14 +6,18 @@ package plantsVsZombies;
 //poner como subclase de girasol? 
 public class Birasol extends Planta {
     protected int generaSol;
-    protected boolean predecesor; //plantear bien exigencia
+    //protected boolean predecesor; //plantear bien exigencia
     public Birasol (int x, int y){
         super(x,y);
         this.generaSol=50;
         this.costo=150;
         this.danio=0;
         this.id = 'B';
-        
+    }
+    
+    @Override
+    public void atacar(Planta p, Tablero t){
+        t.setSoles(t.getSoles()+this.generaSol);
     }
     
 }

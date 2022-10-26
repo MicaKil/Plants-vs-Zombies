@@ -13,4 +13,8 @@ public class Nuez extends Planta {
         this.id='N';
     }
     
+    @Override
+    public void atacar(Planta p, Tablero t){
+        //no hace nada
+    }    
 }

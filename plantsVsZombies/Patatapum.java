@@ -15,16 +15,18 @@ public class Patatapum extends Planta {
     }
     
     @Override
-    public void atacar(Planta p, Zombie[][] z, Planta[][] t){
+    public void atacar(Planta p, Tablero t){
         int i = p.x;
         int j=p.y;
         if (this.explotar){
-            t[i][j]=null;
-            z[i][j].setVida(z[i][j].getVida()-p.danio);
+            //lo elimino del tablero para no tener problemas con los char
+            t.tableroP[i][j]=null;
+            t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()-p.danio);
             System.out.println("PUM!");           
         }
         else {
-            if (z[i][j+1]!=null && z[i][j+1] instanceof Zombie){
+            //se activa si hay un zombie adelante
+            if (t.tableroZ[i][j+1]!=null &&t.tableroZ[i][j+1] instanceof Zombie){
                 this.explotar=true;
             }
         

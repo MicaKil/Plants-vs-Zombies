@@ -21,6 +21,36 @@ public class Planta {
         this.y=y;
     }
     
+    public void atacar(Planta p, Tablero t){
+        boolean foundZombie=false;
+        int i = p.x;
+        int j=p.y;
+        while (!foundZombie){
+            //si encuentra un zombie, le hace daño y sale del bucle 
+            if (t.tableroZ[i][j]!=null){
+                t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()- p.danio);
+                foundZombie=true;
+                System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
+                if (t.tableroZ[i][j].vida==0){
+                    System.out.println(t.tableroZ[i][j].id + " Ha muerto");
+                    t.tableroZ[i][j]=null;
+                }
+                else {
+                    System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
+                }
+            }
+            else {
+                if (j<9){
+                    j++;
+                }
+                else{
+                    foundZombie=true;
+                }
+                
+            }
+        }
+    }
+}
 
     
-}
+             

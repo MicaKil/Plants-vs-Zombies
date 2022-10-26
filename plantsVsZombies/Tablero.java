@@ -1,13 +1,16 @@
 package plantsVsZombies;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Tablero {
-    // no se si sería privado o protegido
+    //protected ArrayList<Object> arr = new ArrayList <Object>();
     protected Planta[][] tableroP = new Planta[5][10]; // tablero en el que van a estar los objetos planta
     protected Zombie[][] tableroZ = new Zombie[5][10]; // tablero en el que van a estar los objetos zombies
     protected int soles = 200;
     protected int vidas = 3;
+    protected int cantGirasoles=0;
+    //protected int cantBirasoles=0;
     
     public Tablero() {}
 
@@ -81,7 +84,7 @@ public class Tablero {
                             //System.out.println("vida planta " + this.tableroP[i][j-1].vida);
                             if (this.tableroP[i][j - 1].vida <= 0) { // si mata a la planta
                                 this.tableroP[i][j - 1] = null; //la eliminamos
-                                System.out.println("Un zombie ha comido a una planta!");
+                                System.out.println("Un zombie ha comido a una planta! (> ﹏ <)");
                                 this.tableroZ[i][j].atacando = false;
                             }
                         } else { //si no está atacando...
@@ -110,6 +113,12 @@ public class Tablero {
     // Métodos de las plantas
     public void plantar(Planta p){
         this.tableroP[p.x][p.y]=p;
+        if (p instanceof Girasol){
+            this.cantGirasoles++;
+        }
+        if (p instanceof Birasol){
+            this.cantGirasoles=this.cantGirasoles+2;
+        }
 
         // si hay un zombie al lado de la planta...
         if (this.tableroZ[p.x][p.y + 1] != null) {
@@ -117,7 +126,17 @@ public class Tablero {
         }
 
     }
-
+    
+    //metodo atacar de las plantas
+    public void ataquePlantas(){
+       for (int i=0; i<5; i++ ){
+            for (int j=0; j<10; j++){
+                if(this.tableroP[i][j]!=null){
+                    this.tableroP[i][j].atacar(this.tableroP[i][j], this);
+                }
+            }
+        }
+    }
     // ------------------------------------------------
     // Getters y Setters
     public int getSoles() {

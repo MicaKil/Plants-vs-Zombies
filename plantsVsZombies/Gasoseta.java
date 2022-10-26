@@ -10,8 +10,58 @@ public class Gasoseta extends Planta {
         super(x,y);
         this.costo=150;
         this.rango=3;
-        //daño del gas? 
-        //subclase de patatapum? 
+        this.danio=20;
+         
     }
-    
+    @Override
+    public void atacar(Planta p, Tablero t){
+        int x = p.x;
+        int y=p.y;
+        int limInfX, limInfY, limSupX, limSupY;
+        if ((x-1)<0){
+            limInfX=x;
+        }
+        else{
+            limInfX=x-1;
+        }
+        if ((x + 1) > 4) {
+            limSupX = x;
+        }
+        else {
+            limSupX = x + 1;
+        }
+        if ((y-1)<0){
+            limInfY=y;
+        }
+        else {
+            limInfY=y-1;
+        }
+        if ((y+1)<0){
+            limSupY=y;
+        }
+        else{
+            limSupY=y+1;
+        }
+        
+        int i,j;
+        i=limInfX;
+        while (i<=limSupX){
+            j=limInfY;
+            while (j<=limSupY){
+                if (t.tableroZ[i][j]!=null){
+                    t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()- p.danio);
+                }
+                System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
+                if (t.tableroZ[i][j].vida==0){
+                    System.out.println(t.tableroZ[i][j].id + " Ha muerto");
+                    t.tableroZ[i][j]=null;
+                }
+                else {
+                    System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
+                }
+                j++;
+            }
+            i++;
+        }
+    }
 }
