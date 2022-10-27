@@ -10,8 +10,10 @@ public class Zombie {
     protected int vida;
     protected int danio; // el daño que realiza al atacar
     protected boolean ralentizado; // si ha sido ralentizado
-
     protected boolean atacando;
+    protected boolean tieneCono;
+    protected boolean tieneCubo;
+
 
     public Zombie(int coorX) {
         this.id = 'z';
@@ -35,13 +37,13 @@ public class Zombie {
                 //System.out.println("vida planta " + tablero.tableroP[i][j-1].vida);
                 if (tablero.tableroP[i][j - 1].vida <= 0) { // si mata a la planta
                     tablero.tableroP[i][j - 1] = null; //la eliminamos
-                    System.out.println("Un zombie ha comido a una planta!");
+                    System.out.println("Un zombie ha comido a una planta! T-T");
                     zombie.atacando = false;
                 }
             } else { //si no está atacando...
                 // si no hay nada adelante avanza
                 if (j > 0 && tablero.tableroZ[i][j - 1] == null && tablero.tableroP[i][j - 1] == null) {
-                    zombie.y -= 1; //cambiamos la coor y del zombie
+                    zombie.y -= 1; //cambiamos la coor 'y' del zombie
                     tablero.tableroZ[i][j - 1] = tablero.tableroZ[i][j]; //lo movemos en el tablero
                     tablero.tableroZ[i][j] = null; //borramos donde estaba antes
                     // si al caminar queda al lado de una planta...
