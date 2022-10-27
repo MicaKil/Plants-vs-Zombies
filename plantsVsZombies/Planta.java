@@ -30,12 +30,14 @@ public class Planta {
             if (t.tableroZ[i][j]!=null){
                 t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()- p.danio);
                 foundZombie=true;
-                System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
+                if (p.danio > 0) {
+                    System.out.println(p.id + " le hizo " + p.danio + " daño a: " + t.tableroZ[i][j].id);
+                }
                 if (t.tableroZ[i][j].vida==0){
                     System.out.println(t.tableroZ[i][j].id + " ha muerto x_x");
                     t.tableroZ[i][j]=null;
                 }
-                else {
+                else if (p.danio > 0){
                     System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
                 }
             }
@@ -46,7 +48,6 @@ public class Planta {
                 else{
                     foundZombie=true;
                 }
-                
             }
         }
     }
