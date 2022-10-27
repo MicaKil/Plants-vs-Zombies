@@ -21,11 +21,12 @@ public class Tablero {
     public void mostrarTablero(PlantsVsZombies juego) {
         int turnos = (int) juego.cantMovimientos; // lo paso a int para hacer la división entera
         //System.out.println("======================================================================================");
-        System.out.printf("Turno N°%d \n", ((turnos + 1) /2));
+        System.out.printf("Turno N°%d \n", ((turnos + 1) /2) + 1);
         System.out.printf("Soles: %d \n", juego.soles);
         System.out.printf("Vidas: %d \n", juego.vidas);
         System.out.println("Zombies: z: Zombie, a: Abanderado, c: Caracono, b: Caracubo, l: Lector, s: Saltador");
-        System.out.println("Plantas: B: Birasol, G: Girasol, L: Lanzaguisantes, R: Repetidora, H: Hielaguisantes, \n N: Nuez, P: Patatapum, C: Petacereza, O: Gasoseta, U: Guisantralladora");
+        System.out.println("Plantas: B: Birasol, G: Girasol, L: Lanzaguisantes, R: Repetidora, H: Hielaguisantes, \n" +
+                           "         N: Nuez, P: Patatapum, C: Petacereza, O: Gasoseta, U: Guisantralladora");
         //System.out.println("======================================================================================");
 
         /*
@@ -35,8 +36,8 @@ public class Tablero {
 
         System.out.println("Tablero del juego:");
         System.out.println();
-        System.out.println("   1 2 3 4 5 6 7 8 9 10");
-        System.out.println("   ____________________");
+        System.out.println("    1 2 3 4 5 6 7 8 9 10");
+        System.out.println("   ---------------------");
         for (int i = 0; i < 5; i++) {
             System.out.printf("%d | ", i + 1);
             for (int j = 0; j < 10; j++) {

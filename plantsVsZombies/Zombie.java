@@ -23,7 +23,7 @@ public class Zombie {
         this.atacando = false;
     }
 
-    public void avanzar(Tablero tablero, PlantsVsZombies juego, Zombie zombie){
+    protected void avanzar(Tablero tablero, PlantsVsZombies juego, Zombie zombie){
         int i, j;
         i = zombie.getX();
         j = zombie.getY();

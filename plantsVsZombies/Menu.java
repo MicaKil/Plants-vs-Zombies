@@ -35,7 +35,7 @@ public class Menu {
             //poner opcion de ver que hace cada una?
             while (flagPlantas) {
                 String planta;
-                if (juego.cantMovimientos==0){
+                if (juego.cantMovimientos == 0){
                     planta="1";
                 }
                 else{
@@ -68,7 +68,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del girasol (fila= de 1 a 5)");
+                                    System.out.println("Ingrese la fila del girasol (fila = de 1 a 5)");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -86,19 +86,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del girasol (columna= del 1 al 10)");
+                                    System.out.println("Ingrese la columna del girasol (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el girasol en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Girasol g = new Girasol(Integer.parseInt(fila) - 1, Integer.parseInt(columna) - 1);
@@ -122,7 +127,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Lanzaguisantes (fila= de 1 a 5)");
+                                    System.out.println("Ingrese la fila del Lanzaguisantes (fila = de 1 a 5)");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -140,19 +145,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Lanzaguisantes (columna= del 1 al 10).");
+                                    System.out.println("Ingrese la columna del Lanzaguisantes (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Lanzaguisantes en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Lanzaguisantes l = new Lanzaguisantes(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
@@ -176,7 +186,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Repetidora (fila= de 1 a 5).");
+                                    System.out.println("Ingrese la fila del Repetidora (fila = de 1 a 5).");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -194,19 +204,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Repetidora (columna= del 1 al 10).");
+                                    System.out.println("Ingrese la columna del Repetidora (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Repetidora en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Repetidora r = new Repetidora(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
@@ -230,7 +245,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Hielaguisantes (fila= de 1 a 5)");
+                                    System.out.println("Ingrese la fila del Hielaguisantes (fila = de 1 a 5)");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -248,19 +263,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Hielaguisantes (columna= del 1 al 10).");
+                                    System.out.println("Ingrese la columna del Hielaguisantes (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Hielaguisantes en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Hielaguisantes h = new Hielaguisantes(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
@@ -284,7 +304,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Nuez (fila= de 1 a 5).");
+                                    System.out.println("Ingrese la fila del Nuez (fila = de 1 a 5).");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -302,19 +322,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Nuez (columna= del 1 al 10).");
+                                    System.out.println("Ingrese la columna del Nuez (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Nuez en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Nuez n = new Nuez(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
@@ -338,7 +363,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Patatapum (fila= de 1 a 5)");
+                                    System.out.println("Ingrese la fila del Patatapum (fila = de 1 a 5)");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -356,19 +381,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Patatapum (columna= del 1 al 10)");
+                                    System.out.println("Ingrese la columna del Patatapum (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Patatapum en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Patatapum pt = new Patatapum(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
@@ -392,7 +422,7 @@ public class Menu {
                                 //corroborar que ingresa bien la fila
                                 boolean filaFlag = true;
                                 while (filaFlag) {
-                                    System.out.println("Ingrese la fila del Petacereza (fila= de 1 a 5)");
+                                    System.out.println("Ingrese la fila del Petacereza (fila = de 1 a 5)");
                                     fila = read.nextLine();
                                     try {
                                         int filaInt = Integer.parseInt(fila);
@@ -410,19 +440,24 @@ public class Menu {
                                 //corroborar que ingrese bien la columna
                                 boolean columnaFlag = true;
                                 while (columnaFlag) {
-                                    System.out.println("Ingrese la columna del Petacereza (columna= del 1 al 10)");
+                                    System.out.println("Ingrese la columna del Petacereza (columna = del 1 al 9)");
                                     columna = read.nextLine();
                                     try {
                                         int columnaInt = Integer.parseInt(columna);
                                         switch (columnaInt) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
+                                            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
                                                 System.out.println("Colocará el Petacereza en la columna: " + columnaInt);
                                                 columnaFlag = false;
                                             }
-                                            default -> System.out.println("Columna inexistente, ingrese de nuevo.");
+                                            default -> {
+                                                if (columnaInt == 10)
+                                                    System.out.println("La columna 10 está reservada para los zombies.");
+                                                else
+                                                    System.out.println("Columna inválida, ingrese de nuevo.");
+                                            }
                                         }
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Debe ingresar un número del 1 al 10.");
+                                        System.out.println("Debe ingresar un número del 1 al 9.");
                                     }
                                 }
                                 Petacereza p = new Petacereza(Integer.parseInt(fila)-1, Integer.parseInt(columna)-1);
