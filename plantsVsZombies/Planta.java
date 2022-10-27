@@ -32,7 +32,7 @@ public class Planta {
                 foundZombie=true;
                 System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
                 if (t.tableroZ[i][j].vida==0){
-                    System.out.println(t.tableroZ[i][j].id + " Ha muerto");
+                    System.out.println(t.tableroZ[i][j].id + " ha muerto x_x");
                     t.tableroZ[i][j]=null;
                 }
                 else {

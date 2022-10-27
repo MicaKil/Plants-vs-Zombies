@@ -19,10 +19,14 @@ public class Tablero {
     //public static final String ANSI_GREEN = "\u001B[32m";
 
     public void mostrarTablero(PlantsVsZombies juego) {
+        int turnos = (int) juego.cantMovimientos; // lo paso a int para hacer la división entera
+        //System.out.println("======================================================================================");
+        System.out.printf("Turno N°%d \n", ((turnos + 1) /2));
         System.out.printf("Soles: %d \n", juego.soles);
         System.out.printf("Vidas: %d \n", juego.vidas);
         System.out.println("Zombies: z: Zombie, a: Abanderado, c: Caracono, b: Caracubo, l: Lector, s: Saltador");
-        System.out.println("Plantas: B: Birasol, G: Girasol, L: Lanzaguisantes, R: Repetidora, H: Hielaguisantes, N: Nuez, P: Patatapum, C: Petacereza, O: Gasoseta, U: Guisantralladora");
+        System.out.println("Plantas: B: Birasol, G: Girasol, L: Lanzaguisantes, R: Repetidora, H: Hielaguisantes, \n N: Nuez, P: Patatapum, C: Petacereza, O: Gasoseta, U: Guisantralladora");
+        //System.out.println("======================================================================================");
 
         /*
         System.out.println(ANSI_RED + "Zombies: A: Abanderado, C: Caracono, B: Caracubo, L: Lector, S: Saltador" + ANSI_RESET);
