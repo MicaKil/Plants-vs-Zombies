@@ -11,7 +11,7 @@ public class Patatapum extends Planta {
         super(x,y);
         this.costo=25;
         this.danio=75; 
-        this.id='T';
+        this.id='P';
     }
     
     @Override
@@ -26,7 +26,7 @@ public class Patatapum extends Planta {
         }
         else {
             //se activa si hay un zombie adelante
-            if (t.tableroZ[i][j+1]!=null &&t.tableroZ[i][j+1] instanceof Zombie){
+            if (t.tableroZ[i][j+1]!=null && t.tableroZ[i][j + 1] != null){
                 this.explotar=true;
             }
         

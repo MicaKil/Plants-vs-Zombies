@@ -7,7 +7,7 @@ package plantsVsZombies;
 public class Saltador extends Zombie {
     public Saltador(int coorX) {
         super(coorX);
-        this.id = 'S';
+        this.id = 's';
     }
     protected boolean haSaltado = false;
     /* fail de salto

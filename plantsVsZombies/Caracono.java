@@ -6,7 +6,7 @@ package plantsVsZombies;
 public class Caracono extends Zombie {
     public Caracono(int coorX) {
         super(coorX);
-        this.id = 'C';
+        this.id = 'c';
         this.vida = 150;
     }
 
