@@ -74,7 +74,7 @@ public class Tablero {
             case 4 -> nuevoZombie = new Lector(fila);
             default -> System.out.println("Error al crear zombie.");
         }
-        if (tipoZombie == 3) { // si es saltador se fija primero que haya espacio para saltar en la fila
+        /*if (tipoZombie == 3) { // si es saltador se fija primero que haya espacio para saltar en la fila
             int i = 9;
             while (i >= 0 && this.tableroP[fila][i] == null) {
                 i --;
@@ -87,7 +87,8 @@ public class Tablero {
 
         } else {
             this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
-    }   }
+        }   */
+    }
 
     // caminan y atacan los zombies del tablero
     public void avanzarZombies(PlantsVsZombies juego) {
