@@ -4,8 +4,8 @@ package plantsVsZombies;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
-    public Menu() {}
+public class Tienda {
+    public Tienda() {}
     public void mostrarMenu(PlantsVsZombies juego, Tablero tablero) {
         //Modelado del juego con el usuario participando
         boolean comprarFlag = juego.getSoles() >= 25; //si tiene menos de 25 soles no puede comprar

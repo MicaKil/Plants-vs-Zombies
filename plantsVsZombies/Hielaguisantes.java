@@ -6,7 +6,7 @@ package plantsVsZombies;
 //poner como subclase? --> tal vez no pq no necesita un lanzaguiasntes de base
 
 public class Hielaguisantes extends Planta {
-    protected boolean realentiza;
+    private boolean realentiza;
     
     public Hielaguisantes(int x, int y){
         super(x,y);

@@ -20,10 +20,10 @@ public class PlantsVsZombies {
         Tablero tablero = new Tablero(); //tablero vacío
         tablero.mostrarTablero(this);
         // creamos el menu de juego
-        Menu menu = new Menu();
+        Tienda tienda = new Tienda();
 
         while (this.cantMovimientos < 51.0 && this.vidas > 0) {
-            menu.mostrarMenu(this, tablero);
+            tienda.mostrarMenu(this, tablero);
             //System.out.println("menu cant movimientos " + this.cantMovimientos);
             this.cantMovimientos ++; // suma uno al terminar de comprar
 

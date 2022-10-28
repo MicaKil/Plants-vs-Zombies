@@ -11,8 +11,8 @@ public class Zombie {
     protected int danio; // el daño que realiza al atacar
     protected boolean ralentizado; // si ha sido ralentizado
     protected boolean atacando;
-    protected boolean tieneCono;
-    protected boolean tieneCubo;
+    //protected boolean tieneCono;
+    //protected boolean tieneCubo;
 
 
     public Zombie(int coorX) {
