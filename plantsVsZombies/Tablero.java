@@ -18,6 +18,7 @@ public class Tablero {
 
     public void mostrarTablero(PlantsVsZombies juego) {
         int turnos = (int) juego.cantMovimientos; // lo paso a int para hacer la división entera
+        System.out.println();
         //System.out.println("======================================================================================");
         System.out.printf("Turno N°%d \n", ((turnos + 1) /2) + 1);
         System.out.printf("Soles: %d \n", juego.soles);
@@ -68,25 +69,20 @@ public class Tablero {
         Zombie nuevoZombie = null;
         switch (tipoZombie) {
             case 0 -> nuevoZombie = new Zombie(fila);
-            case 1 -> nuevoZombie = new Caracubo(fila);
-            case 2 -> nuevoZombie = new Caracono(fila);
+            case 1 -> { // caracono
+                nuevoZombie = new Zombie(fila);
+                nuevoZombie.setId('c');
+                nuevoZombie.setVida(150);
+            }
+            case 2 -> { // caracubo
+                nuevoZombie = new Zombie(fila);
+                nuevoZombie.setId('b');
+                nuevoZombie.setVida(200);
+            }
             case 3 -> nuevoZombie = new Saltador(fila);
             case 4 -> nuevoZombie = new Lector(fila);
             default -> System.out.println("Error al crear zombie.");
         }
-        /*if (tipoZombie == 3) { // si es saltador se fija primero que haya espacio para saltar en la fila
-            int i = 9;
-            while (i >= 0 && this.tableroP[fila][i] == null) {
-                i --;
-            }
-            if (!(this.tableroP[fila][i] instanceof Nuez) && ((i-1) >= 0)) {
-                if (this.tableroP[fila][i - 1] == null) { // si hay espacio detrás de la planta
-                    this.tableroZ[fila][9] = nuevoZombie; // lo colocamos en esa fila
-                }
-            }
-        } else {
-            this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
-        }   */
         this.tableroZ[fila][9] = nuevoZombie;
     }
     // caminan y atacan los zombies del tablero
@@ -122,7 +118,7 @@ public class Tablero {
        for (int i=0; i<5; i++ ){
             for (int j=0; j<10; j++){
                 if(this.tableroP[i][j]!=null){
-                    this.tableroP[i][j].ataque(this.tableroP[i][j], juego);
+                    this.tableroP[i][j].atacar(this.tableroP[i][j], juego);
                 }
             }
         }

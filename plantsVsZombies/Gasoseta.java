@@ -15,7 +15,8 @@ public class Gasoseta extends Planta {
          
     }
     @Override
-    public void atacar(Planta p, Tablero t){
+    public void atacar(Planta p, PlantsVsZombies juego){
+        Tablero t = juego.tablero;
         int x = p.x;
         int y=p.y;
         int limInfX, limInfY, limSupX, limSupY;

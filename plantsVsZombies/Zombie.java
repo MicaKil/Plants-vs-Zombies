@@ -26,9 +26,6 @@ public class Zombie {
     }
 
     protected void avanzar(Tablero tablero, PlantsVsZombies juego, Zombie zombie){
-        int i, j;
-        i = zombie.getX();
-        j = zombie.getY();
         if (zombie.isRalentizado()) { // si estaba ralentizado...
             zombie.setRalentizado(false); // se lo desralentiza
         } else { // si no
@@ -47,10 +44,10 @@ public class Zombie {
         int vida = tablero.tableroP[i][j - 1].getVida() - tablero.tableroZ[i][j].getDanio();
         if (vida > 0) {
             tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
-            System.out.printf("La planta en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n", i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
+            System.out.printf("- La planta en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n", i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
         } else { // si mata a la planta
             tablero.tableroP[i][j - 1] = null; //la eliminamos
-            System.out.printf("Un zombie ha comido a la planta en la posición (%d,%d)! T-T\n", i, j - 1);
+            System.out.printf("- Un zombie ha comido a la planta en la posición (%d,%d)! T-T\n", i, j - 1);
             zombie.setAtacando(false); //deja de atacar
         }
     }
@@ -80,6 +77,11 @@ public class Zombie {
     public char getId() {
         return this.id;
     }
+
+    public void setId(char id) {
+        this.id = id;
+    }
+
     public int getX() {
         return this.x;
     }

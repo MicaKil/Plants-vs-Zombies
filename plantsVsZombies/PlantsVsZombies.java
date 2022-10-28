@@ -25,6 +25,8 @@ public class PlantsVsZombies {
 
         while (this.cantMovimientos < 51.0 && this.vidas > 0) {
             tienda.comprarPlantas(this, tablero);
+            System.out.println();
+
             this.cantMovimientos ++; // suma uno al terminar de comprar
 
             // Zombies
