@@ -9,10 +9,13 @@ public class PlantsVsZombies {
 
     protected int soles = 200;
     protected int vidas = 3;
-    protected int cantGirasoles=0;
     protected double cantMovimientos = 0; // es double/float porque sino las operaciones de / y % resultan en la operacion entera
     protected int totalZombies = 0;
     protected int totalPlantas = 0;
+    protected int cantGirasoles=0;
+    protected int cantPatatapum= 0;
+    protected int cantRepetidora = 0;
+
     Tablero tablero = new Tablero();
     public PlantsVsZombies() {}
 
@@ -24,6 +27,10 @@ public class PlantsVsZombies {
         Tienda tienda = new Tienda();
 
         while (this.cantMovimientos < 51.0 && this.vidas > 0) {
+            /*System.out.println("g " + this.getCantGirasoles());
+            System.out.println("p " + this.getCantPatatapum());
+            System.out.println("r " + this.getCantRepetidora());
+            */
             tienda.comprarPlantas(this, tablero);
             System.out.println();
 
@@ -34,14 +41,14 @@ public class PlantsVsZombies {
 
             faseZombies();
             tablero.mostrarTablero(this);
-            esperar();
+            //esperar();
 
             //ataque de las plantas
             // ---------------------------------------------------
             if (vidas > 0 && this.totalPlantas > 0 ){// no tiene sentido que ataquen si ya se perdió
                 fasePlantas();
                 tablero.mostrarTablero(this);
-                esperar();
+                //esperar();
             }
 
             this.cantMovimientos ++; // suma uno al terminar la fase de ataque
@@ -123,6 +130,22 @@ public class PlantsVsZombies {
 
     public void setCantGirasoles(int cantGirasoles) {
         this.cantGirasoles = cantGirasoles;
+    }
+
+    public int getCantPatatapum() {
+        return cantPatatapum;
+    }
+
+    public void setCantPatatapum(int cantPatatapum) {
+        this.cantPatatapum = cantPatatapum;
+    }
+
+    public int getCantRepetidora() {
+        return cantRepetidora;
+    }
+
+    public void setCantRepetidora(int cantRepetidora) {
+        this.cantRepetidora = cantRepetidora;
     }
 
     public double getCantMovimientos() {

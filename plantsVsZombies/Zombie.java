@@ -30,14 +30,14 @@ public class Zombie {
             zombie.setRalentizado(false); // se lo desralentiza
         } else { // si no
             if (zombie.isAtacando()) { //si el zombie está atacando
-                atacar(tablero, zombie);
+                atacar(tablero, juego, zombie);
             } else { //si no está atacando...
                 caminar(tablero, juego, zombie);
             }
         }
     }
 
-    protected void atacar(Tablero tablero, Zombie zombie) {
+    protected void atacar(Tablero tablero, PlantsVsZombies juego, Zombie zombie) {
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
@@ -46,6 +46,11 @@ public class Zombie {
             tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
             System.out.printf("- La planta en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n", i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
         } else { // si mata a la planta
+            switch (tablero.tableroP[i][j - 1].getId()) { // si mata a una de estas plantas...
+                case 'G' -> juego.setCantGirasoles(juego.getCantGirasoles() - 1); // reduce su cantidad en uno
+                case 'R' -> juego.setCantRepetidora(juego.getCantRepetidora() - 1);
+                case 'P' -> juego.setCantPatatapum(juego.getCantPatatapum() - 1);
+            }
             tablero.tableroP[i][j - 1] = null; //la eliminamos
             System.out.printf("- Un zombie ha comido a la planta en la posición (%d,%d)! T-T\n", i, j - 1);
             zombie.setAtacando(false); //deja de atacar

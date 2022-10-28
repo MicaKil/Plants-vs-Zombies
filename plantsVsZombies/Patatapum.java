@@ -22,7 +22,9 @@ public class Patatapum extends Planta {
         if (this.explotar){
             //lo elimino del tablero para no tener problemas con los char
             t.tableroP[i][j]=null;
+            juego.setCantPatatapum(juego.getCantPatatapum() - 1); // se resta en uno la cantidad actual
             t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()-p.danio);
+
             System.out.println("PUM!");           
         }
         else {
