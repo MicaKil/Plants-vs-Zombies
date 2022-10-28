@@ -17,6 +17,7 @@ public class Tablero {
     //public static final String ANSI_GREEN = "\u001B[32m";
 
     public void mostrarTablero(PlantsVsZombies juego) {
+        System.out.println();
         int turnos = (int) juego.cantMovimientos; // lo paso a int para hacer la división entera
         //System.out.println("======================================================================================");
         System.out.printf("Turno N°%d \n", ((turnos + 1) /2) + 1);
@@ -74,7 +75,7 @@ public class Tablero {
             case 4 -> nuevoZombie = new Lector(fila);
             default -> System.out.println("Error al crear zombie.");
         }
-        if (tipoZombie == 3) { // si es saltador se fija primero que haya espacio para saltar en la fila
+        /*if (tipoZombie == 3) { // si es saltador se fija primero que haya espacio para saltar en la fila
             int i = 9;
             while (i >= 0 && this.tableroP[fila][i] == null) {
                 i --;
@@ -87,7 +88,9 @@ public class Tablero {
 
         } else {
             this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
-    }   }
+        }   */
+        this.tableroZ[fila][9] = nuevoZombie;
+    }
 
     // caminan y atacan los zombies del tablero
     public void avanzarZombies(PlantsVsZombies juego) {
@@ -118,11 +121,15 @@ public class Tablero {
     }
     
     //metodo atacar de las plantas
-    public void ataquePlantas(){
+    public void ataquePlantas(PlantsVsZombies juego){
        for (int i=0; i<5; i++ ){
             for (int j=0; j<10; j++){
-                if(this.tableroP[i][j]!=null){
-                    this.tableroP[i][j].atacar(this.tableroP[i][j], this);
+                if(this.tableroP[i][j]!=null){ // no se generan soles
+                    //if (this.tableroP[i][j] instanceof Girasol || this.tableroP[i][j] instanceof Birasol) {
+                       // this.tableroP[i][j].Girasol.atacar(this.tableroP[i][j], juego); // trate de llamar al metodo sobrecargado
+                    //} else {
+                        this.tableroP[i][j].atacar(this.tableroP[i][j], this);
+                    //}
                 }
             }
         }

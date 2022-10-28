@@ -56,7 +56,7 @@ public class PlantsVsZombies {
             if (vidas > 0 && this.totalPlantas > 0 ){// no tiene sentido que ataquen si ya se perdió
                 System.out.println("**************************************************************************************");
                 System.out.println("Ataque de las plantas!");
-                tablero.ataquePlantas();
+                tablero.ataquePlantas(this);
                 tablero.mostrarTablero(this);
             }
 
