@@ -17,7 +17,7 @@ public class Birasol extends Planta {
     
    @Override
     //recibir el juego desde planta para hacer juego.tablero.setsoles y que no se rompa
-    public void ataque(Planta p, PlantsVsZombies juego){
+    public void atacar(Planta p, PlantsVsZombies juego){
         juego.setSoles(juego.getSoles()+this.generaSol);
     }
     

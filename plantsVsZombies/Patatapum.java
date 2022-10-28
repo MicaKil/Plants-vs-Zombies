@@ -15,7 +15,8 @@ public class Patatapum extends Planta {
     }
     
     @Override
-    public void atacar(Planta p, Tablero t){
+    public void atacar(Planta p, PlantsVsZombies juego){
+        Tablero t = juego.tablero;
         int i = p.x;
         int j=p.y;
         if (this.explotar){
