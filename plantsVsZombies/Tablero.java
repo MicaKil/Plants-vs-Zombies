@@ -17,7 +17,6 @@ public class Tablero {
     //public static final String ANSI_GREEN = "\u001B[32m";
 
     public void mostrarTablero(PlantsVsZombies juego) {
-        System.out.println();
         int turnos = (int) juego.cantMovimientos; // lo paso a int para hacer la división entera
         //System.out.println("======================================================================================");
         System.out.printf("Turno N°%d \n", ((turnos + 1) /2) + 1);
@@ -85,13 +84,11 @@ public class Tablero {
                     this.tableroZ[fila][9] = nuevoZombie; // lo colocamos en esa fila
                 }
             }
-
         } else {
             this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
         }   */
         this.tableroZ[fila][9] = nuevoZombie;
     }
-
     // caminan y atacan los zombies del tablero
     public void avanzarZombies(PlantsVsZombies juego) {
         for (int i = 0; i < 5; i++) {
@@ -124,12 +121,8 @@ public class Tablero {
     public void ataquePlantas(PlantsVsZombies juego){
        for (int i=0; i<5; i++ ){
             for (int j=0; j<10; j++){
-                if(this.tableroP[i][j]!=null){ // no se generan soles
-                    //if (this.tableroP[i][j] instanceof Girasol || this.tableroP[i][j] instanceof Birasol) {
-                       // this.tableroP[i][j].Girasol.atacar(this.tableroP[i][j], juego); // trate de llamar al metodo sobrecargado
-                    //} else {
-                        this.tableroP[i][j].atacar(this.tableroP[i][j], this);
-                    //}
+                if(this.tableroP[i][j]!=null){
+                    this.tableroP[i][j].ataque(this.tableroP[i][j], juego);
                 }
             }
         }

@@ -13,11 +13,12 @@ public class PlantsVsZombies {
     protected double cantMovimientos = 0; // es double/float porque sino las operaciones de / y % resultan en la operacion entera
     protected int totalZombies = 0;
     protected int totalPlantas = 0;
+    Tablero tablero = new Tablero();
     public PlantsVsZombies() {}
 
     public void iniciar() {
         //Modelado del juego con el usuario participando
-        Tablero tablero = new Tablero(); //tablero vacío
+        //Tablero tablero = new Tablero(); //tablero vacío
         tablero.mostrarTablero(this);
         // creamos el menu de juego
         Tienda tienda = new Tienda();
