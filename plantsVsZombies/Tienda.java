@@ -1,7 +1,6 @@
 
 package plantsVsZombies;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Tienda {
@@ -10,7 +9,7 @@ public class Tienda {
         //Modelado del juego con el usuario participando
         boolean comprarFlag = juego.getSoles() >= 25; //si tiene menos de 25 soles no puede comprar
         boolean flagPlantas;
-        boolean cadaCinco = ((((juego.cantMovimientos)/2.0)+1.0)%5.0==0.0);  //para que aparezca la tienda de dave cada 5 turmos
+        boolean cadaCinco = true; //((((juego.cantMovimientos)/2.0)+1.0)%5.0==0.0);  //para que aparezca la tienda de dave cada 5 turmos
         Scanner read = new Scanner(System.in);
         int[] posPlanta;
         //bucle de compra
@@ -67,6 +66,8 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 posPlanta = pedirPos("el girasol");
                                 Girasol g = new Girasol(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setCantGirasoles(juego.getCantGirasoles() + 1);
+                                System.out.println("g: " + juego.getCantGirasoles());
                                 juego.setSoles(juego.getSoles() - g.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(g, juego);
@@ -102,6 +103,7 @@ public class Tienda {
                                 System.out.println("Eligió la Repetidora.");
                                 posPlanta = pedirPos("la repetidora");
                                 Repetidora r = new Repetidora(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setCantRepetidora(juego.getCantRepetidora() + 1);
                                 juego.setSoles(juego.getSoles() - r.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(r, juego);
@@ -153,6 +155,7 @@ public class Tienda {
                                 System.out.println("Eligió el Patatapum");
                                 posPlanta = pedirPos("el patatapum");
                                 Patatapum pt = new Patatapum(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setCantPatatapum(juego.getCantPatatapum() + 1);
                                 juego.setSoles(juego.getSoles() - pt.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(pt, juego);
@@ -198,50 +201,41 @@ public class Tienda {
                                         flagDave = false;
                                     }
                                     case "1" -> {
-                                        //buscar donde hay girasoles y darle solo esas opciones
-                                        System.out.println("Eligió Birasol");
-                                        int[] posicion = new int[2];
-                                        ArrayList<int[]> arrayPosiciones = new ArrayList<>();
-                                        for (int i = 0; i < 5; i++) {
-                                            for (int j = 0; j < 10; j++) {
-                                                if ((tablero.tableroP[i][j] != null) && (tablero.tableroP[i][j] instanceof Girasol)) {
-                                                    posicion[0] = tablero.tableroP[i][j].x;
-                                                    posicion[1] = tablero.tableroP[i][j].y;
-                                                    arrayPosiciones.add(posicion);
+                                        if (juego.getCantGirasoles() == 0) {
+                                            System.out.println("Necesitas girasoles para colocar un birasol.");
+                                            flagDave = false;
+                                        } else {
+                                            //buscar donde hay girasoles y darle solo esas opciones
+                                            System.out.println("Eligió Birasol");
+                                            int[][] posGirasoles = buscarPlantas('G', juego);
+                                            System.out.println("Posiciones disponibles: ");
+                                            for (int i = 0; i < juego.getCantGirasoles(); i++) {
+                                                System.out.printf("%d. ", i + 1);
+                                                for (int j = 0; j < 2; j++) {
+                                                    System.out.printf("%d ", posGirasoles[i][j] + 1);
                                                 }
+                                                System.out.println();
                                             }
                                         }
-
-                                        //agregar que si no hay posiciones, se salga de la tienda
-                                        int cantPosiciones = 0;
-                                        boolean flagPosiciones = false;
-                                        String pos = "";
-                                        while (!flagPosiciones) {
-                                            System.out.println("Ingrese el número correspondiente a la opción de coordenadas para plantar su birasol.");
-                                            for (int p = 0; p < arrayPosiciones.size(); p++) {
-                                                System.out.println("Opción " + p + 1 + arrayPosiciones.get(p)[0] + " " + arrayPosiciones.get(p)[1]);
-                                                cantPosiciones++;
-                                            }
-                                            pos = read.nextLine();
-                                            try {
-                                                int intPos = Integer.parseInt(pos);
-                                                flagPosiciones = true;
-                                            } catch (NumberFormatException ex) {
-                                                System.out.println("Debe ingresar un número de las opciones.");
-                                            }
-                                        }
-                                        //plantar en posicion opcion-1
-                                        Birasol b = new Birasol(arrayPosiciones.get(Integer.parseInt(pos) - 1)[0], arrayPosiciones.get(Integer.parseInt(pos) - 1)[1]);
-                                        //agregar planta al tablero
-                                        //arreglar que no se guardan bien las posiciones
-                                        //T.tableroP[i][j]=null;
-                                        tablero.plantar(b, juego);
-                                        System.out.printf("ID de la planta: %s. \n", b.id);
-                                        juego.totalPlantas ++;
-                                        tablero.mostrarTablero(juego);
                                     }
                                     case "2" -> {
-                                        //buscar donde hay patatapum y darle esas opciones
+                                        if (juego.getCantPatatapum() == 0) {
+                                            System.out.println("Necesita al menos un patatapum para colocar una gasoseta.");
+                                            flagDave = false;
+                                        } else {
+                                            //buscar donde hay girasoles y darle solo esas opciones
+                                            System.out.println("Eligió gasoseta");
+                                            int[][] posPatatapum = buscarPlantas('P', juego);
+                                            System.out.println("Posiciones disponibles: ");
+                                            for (int i = 0; i < juego.getCantGirasoles(); i++) {
+                                                System.out.printf("%d. ", i + 1);
+                                                for (int j = 0; j < 2; j++) {
+                                                    System.out.printf("%d ", posPatatapum[i][j] + 1);
+                                                }
+                                                System.out.println();
+                                            }
+                                        }
+                                        /*//buscar donde hay patatapum y darle esas opciones
                                         System.out.println("Eligió gasoseta.");
                                         int[] posicionG = new int[2];
                                         ArrayList<int[]> arrayPosicionesG = new ArrayList<>();
@@ -277,9 +271,27 @@ public class Tienda {
                                         tablero.plantar(g, juego);
                                         System.out.printf("ID de la planta: %s. \n", g.id);
                                         juego.totalPlantas ++;
-                                        tablero.mostrarTablero(juego);
+                                        tablero.mostrarTablero(juego); */
                                     }
                                     case "3" -> {
+                                        if (juego.getCantRepetidora() == 0) {
+                                            System.out.println("Necesitas una repetidora para colocar una guisantralladora.");
+                                            flagDave = false;
+                                        } else {
+                                            //buscar donde hay girasoles y darle solo esas opciones
+                                            System.out.println("Eligió guisantralladora.");
+                                            int[][] posRepetidora = buscarPlantas('R', juego);
+                                            System.out.println("Posiciones disponibles: ");
+                                            for (int i = 0; i < juego.getCantGirasoles(); i++) {
+                                                System.out.printf("%d. ", i + 1);
+                                                for (int j = 0; j < 2; j++) {
+                                                    System.out.printf("%d ", posRepetidora[i][j] + 1);
+                                                }
+                                                System.out.println();
+                                            }
+                                        }
+
+                                        /*
                                         //buscar donde hay Repetidoras y darle solo esas opciones
                                         System.out.println("Eligió Guisantralladora.");
                                         int[] posicionT = new int[2];
@@ -317,7 +329,7 @@ public class Tienda {
                                         tablero.plantar(t, juego);
                                         System.out.printf("ID de la planta: %s. \n", t.id);
                                         juego.totalPlantas ++;
-                                        tablero.mostrarTablero(juego);
+                                        tablero.mostrarTablero(juego); */
                                     }
                                     default -> System.out.println("No eligió una opción correcta.");
                                 }
@@ -388,6 +400,36 @@ public class Tienda {
             }
         }
         return coor;
+    }
+    private static int[][] buscarPlantas(char c, PlantsVsZombies juego) {
+        int n;
+        Tablero tablero = juego.tablero;
+        switch (c) {
+            case 'G' -> n = juego.getCantGirasoles();
+            case 'R' -> n = juego.getCantRepetidora();
+            case 'P' -> n = juego.getCantPatatapum();
+            default -> {
+                System.out.println("Error."); //es para mi
+                return null;
+            }
+        }
+        int[][] posiciones = new int[n][2];
+        int fila = 0;
+        int i = 0;
+        int j;
+        while (i < 5 && fila <= n) {
+            j = 0;
+            while (j < 9 && fila <= n){
+                if (tablero.tableroP[i][j] != null && tablero.tableroP[i][j].getId() == c) {
+                    posiciones[fila][0] = i;
+                    posiciones[fila][1] = j;
+                    fila ++;
+                }
+                j++;
+            }
+            i++;
+        }
+        return posiciones;
     }
 }
 
