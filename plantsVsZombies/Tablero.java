@@ -88,6 +88,7 @@ public class Tablero {
         } else {
             this.tableroZ[fila][9] = nuevoZombie; //colocamos el zombie en la tabla
         }   */
+        this.tableroZ[fila][9] = nuevoZombie;
     }
 
     // caminan y atacan los zombies del tablero
