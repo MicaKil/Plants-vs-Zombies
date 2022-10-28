@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Tienda {
     public Tienda() {}
-    public void mostrarMenu(PlantsVsZombies juego, Tablero tablero) {
+    public void comprarPlantas(PlantsVsZombies juego, Tablero tablero) {
         //Modelado del juego con el usuario participando
         boolean comprarFlag = juego.getSoles() >= 25; //si tiene menos de 25 soles no puede comprar
         boolean flagPlantas;
-        boolean cadaCinco = ((((juego.cantMovimientos)/2.0)+1.0)%5.0==0.0);
+        boolean cadaCinco = ((((juego.cantMovimientos)/2.0)+1.0)%5.0==0.0);  //para que aparezca la tienda de dave cada 5 turmos
         Scanner read = new Scanner(System.in);
         int[] posPlanta;
         //bucle de compra
@@ -64,9 +64,10 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar un Girasol.");
                             } else {
                                 System.out.println("Eligió el Girasol.");
-                                juego.setSoles(juego.getSoles() - 50);
+                                //obtener coordenadas de la nueva planta
                                 posPlanta = pedirPos("el girasol");
                                 Girasol g = new Girasol(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - g.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(g, juego);
                                 System.out.printf("ID de la planta: %s. \n", g.id);
@@ -81,10 +82,10 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar el Lanzaguisantes.");
                             } else {
                                 System.out.println("Eligió el Lanzaguisantes.");
+                                //obtener coordenadas de la nueva planta
                                 posPlanta = pedirPos("el lanzaguisantes");
-                                juego.setSoles(juego.getSoles() - 100);
-                                //corroborar que ingresa bien la fila
                                 Lanzaguisantes l = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - l.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(l, juego);
                                 System.out.printf("ID de la planta: %s. \n", l.id);
@@ -100,8 +101,8 @@ public class Tienda {
                             } else {
                                 System.out.println("Eligió la Repetidora.");
                                 posPlanta = pedirPos("la repetidora");
-                                juego.setSoles(juego.getSoles() - 200);
                                 Repetidora r = new Repetidora(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - r.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(r, juego);
                                 System.out.printf("ID de la planta: %s. \n", r.id);
@@ -116,9 +117,9 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar el Hielaguisantes.");
                             } else {
                                 System.out.println("Eligió el Hielaguisantes");
-                                juego.setSoles(juego.getSoles() - 175);
                                 posPlanta = pedirPos("el hielaguisantes");
                                 Hielaguisantes h = new Hielaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - h.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(h, juego);
                                 System.out.printf("ID de la planta: %s. \n", h.id);
@@ -133,9 +134,9 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar la Nuez.");
                             } else {
                                 System.out.println("Eligió la Nuez.");
-                                juego.setSoles(juego.getSoles() - 50);
                                 posPlanta = pedirPos("la nuez");
                                 Nuez n = new Nuez(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - n.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(n, juego);
                                 System.out.printf("ID de la planta: %s. \n", n.id);
@@ -150,9 +151,9 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar el Patatapum");
                             } else {
                                 System.out.println("Eligió el Patatapum");
-                                juego.setSoles(juego.getSoles() - 25);
                                 posPlanta = pedirPos("el patatapum");
                                 Patatapum pt = new Patatapum(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - pt.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(pt, juego);
                                 System.out.printf("ID de la planta: %s. \n", pt.id);
@@ -167,9 +168,9 @@ public class Tienda {
                                 System.out.println("No le alcanza para comprar la Petacereza.");
                             } else {
                                 System.out.println("Eligió la Petacereza.");
-                                juego.setSoles(juego.getSoles() - 150);
                                 posPlanta = pedirPos("la petacereza");
                                 Petacereza p = new Petacereza(posPlanta[0] - 1, posPlanta[1] - 1);
+                                juego.setSoles(juego.getSoles() - p.getCosto());
                                 //agregar planta al tablero
                                 tablero.plantar(p, juego);
                                 System.out.printf("ID de la planta: %s. \n", p.id);

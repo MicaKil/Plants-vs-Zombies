@@ -2,7 +2,7 @@
 tienen distinta vida los distintos lanzaguisantes?? 
  */
 package plantsVsZombies;
-public class Planta {
+public class Planta {  //// PODRÍA SER UNA CLASE ABSTRACTA
     protected char id; //nombre que aparece en la pantalla
     protected int vida;
     protected int danio;
@@ -81,6 +81,50 @@ public class Planta {
                 }
             }
         }
+    }
+
+    public char getId() {
+        return id;
+    }
+
+    public void setId(char id) {
+        this.id = id;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getDanio() {
+        return danio;
+    }
+
+    public void setDanio(int danio) {
+        this.danio = danio;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }
 

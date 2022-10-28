@@ -24,48 +24,28 @@ public class PlantsVsZombies {
         Tienda tienda = new Tienda();
 
         while (this.cantMovimientos < 51.0 && this.vidas > 0) {
-            tienda.mostrarMenu(this, tablero);
-            //System.out.println("menu cant movimientos " + this.cantMovimientos);
+            tienda.comprarPlantas(this, tablero);
             this.cantMovimientos ++; // suma uno al terminar de comprar
 
             // Zombies
             // ---------------------------------------------------
 
-            // modificar generacion de zombies a no tan pseudo aleatorio
-            System.out.println("**************************************************************************************");
-            System.out.println("Los zombies están avanzando!!!");
-            Random rand = new Random();
-            int inicio = 0;
-            if (totalZombies == 0) //si no hay zombies solo se crean nuevos zombies
-                inicio = 1;
-            else
-                // caminan y atacan los zombies
-                tablero.avanzarZombies(this);
-
-            int numZombies = rand.nextInt(inicio,4); //num de zombies a aparecer
-            totalZombies += numZombies;
-
-            for (int i = 0; i < numZombies; i++) {
-                tablero.crearZombie();
-            }
-
+            faseZombies();
             tablero.mostrarTablero(this);
-
+            esperar();
 
             //ataque de las plantas
             // ---------------------------------------------------
             if (vidas > 0 && this.totalPlantas > 0 ){// no tiene sentido que ataquen si ya se perdió
-                System.out.println("**************************************************************************************");
-                System.out.println("Ataque de las plantas!");
-                tablero.ataquePlantas(this);
+                fasePlantas();
                 tablero.mostrarTablero(this);
+                esperar();
             }
 
-
-            //System.out.println("ataque cant movimientos " + this.cantMovimientos);
             this.cantMovimientos ++; // suma uno al terminar la fase de ataque
 
-            // ver si se ha perdido
+            // chequear estado del juego
+            // ---------------------------------------------------
             if (vidas <= 0) {
                 System.out.println("Has perdido! :c");
                 Scanner rtaSalir = new Scanner(System.in);
@@ -82,10 +62,96 @@ public class PlantsVsZombies {
 
         }
     }
+
+    public void faseZombies() {
+        System.out.println();
+        System.out.println("**************************************************************************************");
+        System.out.println("Los zombies están avanzando!!!");
+        // modificar generacion de zombies a no tan pseudo aleatorio
+        Random rand = new Random();
+        int inicio = 0;
+        if (totalZombies == 0) //si no hay zombies solo se crean nuevos zombies
+            inicio = 1;
+        else
+            // caminan y atacan los zombies
+            tablero.avanzarZombies(this);
+
+        int numZombies = rand.nextInt(inicio,4); //num de zombies a aparecer
+        totalZombies += numZombies;
+
+        for (int i = 0; i < numZombies; i++) {
+            tablero.crearZombie();
+        }
+    }
+
+    public void fasePlantas() {
+        System.out.println();
+        System.out.println("**************************************************************************************");
+        System.out.println("Ataque de las plantas!");
+        tablero.ataquePlantas(this);
+    }
+
+    public void esperar(){ // para que se puedan ver las jugadas de las plantas y zombies
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public int getSoles() {
+
         return soles;
     }
     public void setSoles(int soles) {
+
         this.soles = soles;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public int getCantGirasoles() {
+        return cantGirasoles;
+    }
+
+    public void setCantGirasoles(int cantGirasoles) {
+        this.cantGirasoles = cantGirasoles;
+    }
+
+    public double getCantMovimientos() {
+        return cantMovimientos;
+    }
+
+    public void setCantMovimientos(double cantMovimientos) {
+        this.cantMovimientos = cantMovimientos;
+    }
+
+    public int getTotalZombies() {
+        return totalZombies;
+    }
+
+    public void setTotalZombies(int totalZombies) {
+        this.totalZombies = totalZombies;
+    }
+
+    public int getTotalPlantas() {
+        return totalPlantas;
+    }
+
+    public void setTotalPlantas(int totalPlantas) {
+        this.totalPlantas = totalPlantas;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
     }
 }

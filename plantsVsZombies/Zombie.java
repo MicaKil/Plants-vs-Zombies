@@ -29,36 +29,51 @@ public class Zombie {
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
-        if (zombie.ralentizado) { // si estaba ralentizado...
-            zombie.ralentizado = false; // se lo desralentiza
+        if (zombie.isRalentizado()) { // si estaba ralentizado...
+            zombie.setRalentizado(false); // se lo desralentiza
         } else { // si no
-            if (zombie.atacando) { //si el zombie está atacando
-                tablero.tableroP[i][j - 1].vida -= tablero.tableroZ[i][j].danio; // le quita vida a la planta
-                //System.out.println("vida planta " + tablero.tableroP[i][j-1].vida);
-                if (tablero.tableroP[i][j - 1].vida <= 0) { // si mata a la planta
-                    tablero.tableroP[i][j - 1] = null; //la eliminamos
-                    System.out.println("Un zombie ha comido a una planta! T-T");
-                    zombie.atacando = false;
-                }
+            if (zombie.isAtacando()) { //si el zombie está atacando
+                atacar(tablero, zombie);
             } else { //si no está atacando...
-                // si no hay nada adelante avanza
-                if (j > 0 && tablero.tableroZ[i][j - 1] == null && tablero.tableroP[i][j - 1] == null) {
-                    zombie.y -= 1; //cambiamos la coor 'y' del zombie
-                    tablero.tableroZ[i][j - 1] = tablero.tableroZ[i][j]; //lo movemos en el tablero
-                    tablero.tableroZ[i][j] = null; //borramos donde estaba antes
-                    // si al caminar queda al lado de una planta...
-                    if ((j - 2) >= 0 && tablero.tableroP[i][j - 2] != null) {
-                        tablero.tableroZ[i][j - 1].atacando = true; //deja de caminar porque va a estar atacando
-                    }
-                } else if (j == 0) { // si el zombie se encuentra en el limite derecho
-                    tablero.tableroZ[i][j] = null; //borramos donde estaba antes
-                    System.out.println("Se ha pasado un zombie! (>_<)");
-                    juego.vidas--;
-                }
+                caminar(tablero, juego, zombie);
             }
         }
     }
 
+    protected void atacar(Tablero tablero, Zombie zombie) {
+        int i, j;
+        i = zombie.getX();
+        j = zombie.getY();
+        int vida = tablero.tableroP[i][j - 1].getVida() - tablero.tableroZ[i][j].getDanio();
+        if (vida > 0) {
+            tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
+            System.out.printf("La planta en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n", i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
+        } else { // si mata a la planta
+            tablero.tableroP[i][j - 1] = null; //la eliminamos
+            System.out.printf("Un zombie ha comido a la planta en la posición (%d,%d)! T-T\n", i, j - 1);
+            zombie.setAtacando(false); //deja de atacar
+        }
+    }
+
+    protected void caminar(Tablero tablero, PlantsVsZombies juego, Zombie zombie) {
+        int i, j;
+        i = zombie.getX();
+        j = zombie.getY();
+        // si no hay nada adelante avanza
+        if (j > 0 && tablero.tableroZ[i][j - 1] == null && tablero.tableroP[i][j - 1] == null) {
+            zombie.setY(j - 1); //cambiamos la coor 'y' del zombie
+            tablero.tableroZ[i][j - 1] = tablero.tableroZ[i][j]; //lo movemos en el tablero
+            tablero.tableroZ[i][j] = null; //borramos donde estaba antes
+            // si al caminar queda al lado de una planta...
+            if ((j - 2) >= 0 && tablero.tableroP[i][j - 2] != null) {
+                tablero.tableroZ[i][j - 1].setAtacando(true); //deja de caminar porque va a estar atacando
+            }
+        } else if (j == 0) { // si el zombie se encuentra en el limite derecho
+            tablero.tableroZ[i][j] = null; //borramos donde estaba antes
+            System.out.println("Se ha pasado un zombie! (>_<)");
+            juego.setVidas(juego.getVidas() - 1);
+        }
+    }
 
     // Getters y setters
 
@@ -68,17 +83,41 @@ public class Zombie {
     public int getX() {
         return this.x;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
     public int getY() {
         return this.y;
     }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public int getVida() {
         return this.vida;
     }
-    public void setVida(int vida) {        this.vida = vida;}
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
     public int getDanio() {
         return this.danio;
     }
+    public boolean isRalentizado() {
+        return ralentizado;
+    }
+
     public void setRalentizado(boolean ralentizado) {
         this.ralentizado = ralentizado;
+    }
+
+    public boolean isAtacando() {
+        return atacando;
+    }
+
+    public void setAtacando(boolean atacando) {
+        this.atacando = atacando;
     }
 }
