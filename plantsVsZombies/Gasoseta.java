@@ -11,6 +11,7 @@ public class Gasoseta extends Planta {
         this.costo=150;
         this.rango=3;
         this.danio=20;
+        this.id = 'O';
          
     }
     @Override

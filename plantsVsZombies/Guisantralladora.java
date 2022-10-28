@@ -11,5 +11,6 @@ public class Guisantralladora extends Planta {
         super(x,y);
         this.danio=200;
         this.costo=250;
+        this.id ='U';
     }
 }
