@@ -452,7 +452,7 @@ public class Tienda {
         case 'R' -> juego.cantRepetidora--;
         case 'P' -> juego.cantPatatapum--;
         default -> {
-            System.out.println("Error."); //es para mi
+            System.out.println("Error aaaa."); //es para mi
             }
         }
     }

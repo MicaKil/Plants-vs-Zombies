@@ -51,14 +51,25 @@ public class Gasoseta extends Planta {
             j=limInfY;
             while (j<=limSupY){
                 if (t.tableroZ[i][j]!=null){
-                    t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()- p.danio);
-                    System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
-                    if (t.tableroZ[i][j].vida==0){
-                        System.out.println(t.tableroZ[i][j].id + " Ha muerto");
-                        t.tableroZ[i][j]=null;
+                    int vidaActual = t.tableroZ[i][j].getVida() - this.danio;
+                    t.tableroZ[i][j].setVida(vidaActual);
+                    System.out.printf("- La petacereza en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
+                            p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
+                    
+                    if (t.tableroZ[i][j].vida <= 0) {
+                        System.out.println("  - El zombie '" + t.tableroZ[i][j].getId() + "' ha muerto x_x");
+                        t.tableroZ[i][j] = null;
                     }
                     else {
-                        System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
+                        if (t.tableroZ[i][j].getId() == 'c' && vidaActual <= 100) {
+                            t.tableroZ[i][j].setId('z');
+                            System.out.printf("  - El zombie 'c' ha perdido su cono! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
+                        } else if (t.tableroZ[i][j].getId() == 'b' && vidaActual <= 100) {
+                            t.tableroZ[i][j].setId('z');
+                            System.out.printf("  -  El zombie 'b' ha perdido su cubeta! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
+                        } else {
+                            System.out.println("  - Vida del zombie '" + t.tableroZ[i][j].getId() + "' : " + vidaActual);
+                        }
                     }
                 }
                 
