@@ -52,15 +52,16 @@ public class Gasoseta extends Planta {
             while (j<=limSupY){
                 if (t.tableroZ[i][j]!=null){
                     t.tableroZ[i][j].setVida(t.tableroZ[i][j].getVida()- p.danio);
+                    System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
+                    if (t.tableroZ[i][j].vida==0){
+                        System.out.println(t.tableroZ[i][j].id + " Ha muerto");
+                        t.tableroZ[i][j]=null;
+                    }
+                    else {
+                        System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
+                    }
                 }
-                System.out.println(p.id +" le hizo "+p.danio+ " daño a: " + t.tableroZ[i][j].id);
-                if (t.tableroZ[i][j].vida==0){
-                    System.out.println(t.tableroZ[i][j].id + " Ha muerto");
-                    t.tableroZ[i][j]=null;
-                }
-                else {
-                    System.out.println("Vida de: "+ t.tableroZ[i][j].id + " : " + t.tableroZ[i][j].vida);
-                }
+                
                 j++;
             }
             i++;
