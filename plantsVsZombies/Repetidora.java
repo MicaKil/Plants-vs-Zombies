@@ -4,6 +4,8 @@ un coste de 200 soles
  */
 package plantsVsZombies;
 //poner como subclase de lanzaguisantes? --> tal vez no pq no necesita un lanzaguisantes de base
+/// borraría la clase y haría como en caracano y caracububo
+
 public class Repetidora extends Planta {
     public Repetidora(int x, int y){
         super(x,y);

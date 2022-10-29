@@ -6,7 +6,7 @@ public class Tablero {
     //protected ArrayList<Object> arr = new ArrayList <Object>();
     protected Planta[][] tableroP = new Planta[5][10]; // tablero en el que van a estar los objetos planta
     protected Zombie[][] tableroZ = new Zombie[5][10]; // tablero en el que van a estar los objetos zombies
-
+    
 
     public Tablero() {}
 
@@ -57,46 +57,63 @@ public class Tablero {
 
     // ------------------------------------------------
     // Métodos para los Zombies
-    public void crearZombie() {
+    public void crearZombie(PlantsVsZombies juego) {
+        boolean cadaX = ((((juego.getCantMovimientos())/2.0)+1.0)%5.0==0.0); // cada X turnos x porque no estoy segura
         Random rand = new Random();
-
-        int tipoZombie = rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
+        int up = 5;
+        if (cadaX && juego.getHorda() == 0) { //cada X puede aparecer el abanderado si ha terminado una horda
+            up = 6;
+        }
+        int tipoZombie = rand.nextInt(up);
 
         int fila;
-        do { // en caso de que se genere un zombie en una casilla ocupada
+        do { // en caso de que se genere un zombie en una casilla ocupada // genera un numero random desde 0 a 5 (sin tomar el 5)
             fila = rand.nextInt(5); // fila en la que va a aparecer el nuevo zombie
         } while (this.tableroZ[fila][9] != null);
 
-        //Zombie nuevoZombie = null;
+        Zombie nuevoZombie = null;
         switch (tipoZombie) {
             case 0 -> {
-                Zombie nuevoZombie = new Zombie(fila);
+                nuevoZombie = new Zombie(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
             }
             case 1 -> { // caracono
-                Zombie nuevoZombie = new Zombie(fila);
+                nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('c');
                 nuevoZombie.setVida(150);
                 this.tableroZ[fila][9] = nuevoZombie;
             }
             case 2 -> { // caracubo
-                Zombie nuevoZombie = new Zombie(fila);
+                nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('b');
                 nuevoZombie.setVida(200);
                 this.tableroZ[fila][9] = nuevoZombie;
             }
             case 3 -> {
-                Zombie nuevoZombie = new Saltador(fila);
+                nuevoZombie = new Saltador(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
             }
             case 4 -> {
-                Zombie nuevoZombie = new Lector(fila);
+                nuevoZombie = new Lector(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
+            }
+            case 5 -> {
+                nuevoZombie = new Zombie(fila);
+                nuevoZombie.setId('a');
+                this.tableroZ[fila][9] = nuevoZombie;
+                System.out.println();
+                System.out.println("HORDA INCOMING!!!!!!"); // son las 4am no se me ocurre otra cosa
+                System.out.println();
+                juego.setHorda(5); // debería ser un número <= al de cada X
             }
             default -> System.out.println("Error al crear zombie.");
         }
 
     }
+    // HACER METODO CREAR HORDA???
+    // COMO ZOMBIE PERO SIN RAND SOLO EN ORDEN PARA MEJORAR LA COMPLEJIDAD
+
+
     // caminan y atacan los zombies del tablero
     public void avanzarZombies(PlantsVsZombies juego) {
         for (int i = 0; i < 5; i++) {

@@ -10,7 +10,7 @@ public class Gasoseta extends Planta {
         super(x,y);
         this.costo=150;
         this.rango=3;
-        this.danio=20;
+        this.danio=15;
         this.id = 'O';
          
     }

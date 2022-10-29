@@ -5,11 +5,14 @@ caminar. Nuez-Cáscara Rabias puede detener su salto.
 package plantsVsZombies;
 
 public class Saltador extends Zombie {
+    protected int haSaltado;
+
     public Saltador(int coorX) {
         super(coorX);
+        haSaltado = 2;
         this.id = 's';
     }
-    protected int haSaltado = 2;
+
 
     @Override
     protected void caminar(Tablero tablero, PlantsVsZombies juego, Zombie zombie) {

@@ -8,6 +8,7 @@ public class Lanzaguisantes extends Planta {
     public Lanzaguisantes(int x, int y){
         super(x,y);
         this.id='L';
+        this.costo=100;
     }
     
     

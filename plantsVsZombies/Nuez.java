@@ -3,7 +3,7 @@
 Tiene un coste de 50 soles.
  */
 package plantsVsZombies;
-
+/// borraría la clase y haría como en caracano y caracububo
 public class Nuez extends Planta {
     public Nuez(int x, int y){
         super(x,y);
