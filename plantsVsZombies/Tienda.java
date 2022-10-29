@@ -118,7 +118,10 @@ public class Tienda {
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
                                 } while (!(isCasillaVacia(juego.tablero, posPlanta)));
 
-                                Repetidora r = new Repetidora(posPlanta[0] - 1, posPlanta[1] - 1);
+                                Planta r = new Planta(posPlanta[0] - 1, posPlanta[1] - 1);
+                                r.setCosto(200);
+                                r.setDanio(50);
+                                r.setId('R');
                                 juego.setCantRepetidora(juego.getCantRepetidora() + 1);
                                 juego.setSoles(juego.getSoles() - r.getCosto());
                                 //agregar planta al tablero
@@ -277,7 +280,10 @@ public class Tienda {
                                            //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió Guisantralladora");
                                             int[] pos =posicionesDave('R', juego);
-                                            Guisantralladora g = new Guisantralladora(pos[0],pos[1]);
+                                            Planta g = new Planta(pos[0],pos[1]);
+                                            g.setDanio(100);
+                                            g.setId('U');
+                                            g.setCosto(250);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta repetetidora
                                             plantarDave(juego, g);
                                             tablero.mostrarTablero(juego);
