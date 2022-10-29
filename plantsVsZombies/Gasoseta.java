@@ -53,7 +53,7 @@ public class Gasoseta extends Planta {
                 if (t.tableroZ[i][j]!=null){
                     int vidaActual = t.tableroZ[i][j].getVida() - this.danio;
                     t.tableroZ[i][j].setVida(vidaActual);
-                    System.out.printf("- La petacereza en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
+                    System.out.printf("- La gasoseta en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
                             p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
                     
                     if (t.tableroZ[i][j].vida <= 0) {
