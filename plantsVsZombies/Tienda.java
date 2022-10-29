@@ -448,9 +448,9 @@ public class Tienda {
         t.plantar(p, juego);
         System.out.printf("ID de la planta: %s. \n", p.id);
         switch (p.id){
-        case 'G' -> juego.cantGirasoles--;
-        case 'R' -> juego.cantRepetidora--;
-        case 'P' -> juego.cantPatatapum--;
+        case 'B' -> juego.cantGirasoles--;
+        case 'U' -> juego.cantRepetidora--;
+        case 'O' -> juego.cantPatatapum--;
         default -> {
             System.out.println("Error aaaa."); //es para mi
             }
