@@ -13,6 +13,7 @@ public class Petacereza extends Planta {
         //rango
         this.danio=150;
         this.id='C';
+        this.costo=150;
     }
     @Override
     public void atacar(Planta p, PlantsVsZombies juego){
