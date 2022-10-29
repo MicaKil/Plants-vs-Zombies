@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class PlantsVsZombies {
 
-    protected int soles = 200;
+    protected int soles = 10000;//200;
     protected int vidas = 3;
     protected double cantMovimientos = 0.0; // es double/float porque sino las operaciones de / y % resultan en la operacion entera
     protected int totalZombies = 0;
@@ -124,7 +124,7 @@ public class PlantsVsZombies {
 
     public void esperar(){ // para que se puedan ver las jugadas de las plantas y zombies
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

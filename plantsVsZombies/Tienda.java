@@ -248,45 +248,40 @@ public class Tienda {
                                             //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió Birasol");
                                             //busca donde hay girasoles, pide posicion y verifica que este correcta
-                                            int pos[]=posicionesDave('G', juego);
+                                            int[] pos =posicionesDave('G', juego);
                                             Birasol b = new Birasol(pos[0],pos[1]);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta girasoles
                                             plantarDave(juego, b);
                                             tablero.mostrarTablero(juego);
                                         }
-                                        break;
                                     }
                                     case "2" -> {
                                         if (juego.getCantPatatapum() == 0) {
                                             System.out.println("Necesita al menos un patatapum para colocar una gasoseta.");
-                                            flagDave = false;
                                         } 
                                         else {
                                             //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió gasoseta");
-                                            int pos[]=posicionesDave('P', juego);
+                                            int[] pos =posicionesDave('P', juego);
                                             Gasoseta g = new Gasoseta(pos[0],pos[1]);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta patatapum
                                             plantarDave(juego, g);
                                             tablero.mostrarTablero(juego);
                                             }
-                                        break;
                                         }
                                     case "3" -> {
                                         if (juego.getCantRepetidora() == 0) {
                                             System.out.println("Necesitas una repetidora para colocar una guisantralladora.");
-                                            flagDave = false;
-                                        } 
+                                        }
                                         else {
                                            //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió Guisantralladora");
-                                            int pos[]=posicionesDave('R', juego);
+                                            int[] pos =posicionesDave('R', juego);
                                             Guisantralladora g = new Guisantralladora(pos[0],pos[1]);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta repetetidora
                                             plantarDave(juego, g);
                                             tablero.mostrarTablero(juego);
                                         }
-                                        break;
                                     }
                                     default -> System.out.println("No eligió una opción correcta.");
                                 }
@@ -400,12 +395,10 @@ public class Tienda {
         int[][] pos = buscarPlantas(id, juego);
         int cantPlantas=0;
         switch (id){
-        case 'G' -> cantPlantas = juego.getCantGirasoles();
-        case 'R' -> cantPlantas = juego.getCantRepetidora();
-        case 'P' -> cantPlantas = juego.getCantPatatapum();
-        default -> {
-            System.out.println("Error."); //es para mi
-            }
+            case 'G' -> cantPlantas = juego.getCantGirasoles();
+            case 'R' -> cantPlantas = juego.getCantRepetidora();
+            case 'P' -> cantPlantas = juego.getCantPatatapum();
+            default -> System.out.println("Error."); //es para mi
         }
         System.out.println("Posiciones disponibles: ");
         for (int i = 0; i < cantPlantas; i++) {
@@ -422,25 +415,30 @@ public class Tienda {
     private int[] isPosicionCorrectaDave(int cantPlanta, int[][] pos){
         boolean posicionCorrecta=false;
         Scanner read = new Scanner(System.in);
-        String opcion="";
+        int[] p = new int[2];
+        String opcion;
         do{
             System.out.println("Elija la posición que desee de las anteriores");
-            opcion = read.nextLine();
-            if (Integer.parseInt(opcion)>cantPlanta){
-                System.out.println("No es una opción correcta");
+            try {
+                opcion = read.nextLine();
+                if (Integer.parseInt(opcion) > cantPlanta || Integer.parseInt(opcion) <= 0) {
+                    System.out.println("No es una opción correcta"); //estaría bueno que vuelva a imprimir las opciones
+                } else {
+                    posicionCorrecta = true;
+
+                    p[0]=pos[Integer.parseInt(opcion)-1][0];
+                    p[1]=pos[Integer.parseInt(opcion)-1][1];
+                    //return Integer.parseInt(opcion);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Debe ingresar un número");
             }
-            else{
-                posicionCorrecta=true;
-                //return Integer.parseInt(opcion);
-            }
-        }while(posicionCorrecta!=true);
+        } while(!posicionCorrecta);
         //posicion final elegida
-        int[] p = new int[2];
-        p[0]=pos[Integer.parseInt(opcion)-1][0];
-        p[1]=pos[Integer.parseInt(opcion)-1][1];
         return p;
     }
-    
+
+    /// no debería estar en el tablero o juego?
     private void plantarDave(PlantsVsZombies juego, Planta p){
         Tablero t = juego.tablero;
         t.tableroP[p.x][p.y]=null;
@@ -448,12 +446,10 @@ public class Tienda {
         t.plantar(p, juego);
         System.out.printf("ID de la planta: %s. \n", p.id);
         switch (p.id){
-        case 'B' -> juego.cantGirasoles--;
-        case 'U' -> juego.cantRepetidora--;
-        case 'O' -> juego.cantPatatapum--;
-        default -> {
-            System.out.println("Error aaaa."); //es para mi
-            }
+            case 'B' -> juego.cantGirasoles--;
+            case 'U' -> juego.cantRepetidora--;
+            case 'O' -> juego.cantPatatapum--;
+            default -> System.out.println("Error aaaa."); //es para mi
         }
     }
 }

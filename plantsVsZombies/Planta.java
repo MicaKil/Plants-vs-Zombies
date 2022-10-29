@@ -33,7 +33,7 @@ public class Planta {  //// PODRÍA SER UNA CLASE ABSTRACTA
                 if (p.getDanio() > 0) {
                     int vidaActual = t.tableroZ[i][j].getVida() - p.getDanio();
                     t.tableroZ[i][j].setVida(vidaActual);
-                    System.out.printf("- La planta '%s' en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
+                    System.out.printf("- La planta '%s' en la posición (%d,%d) le hizo %d de daño a '%s' en la posición (%d,%d).\n",
                             p.getId(), p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
                     if (t.tableroZ[i][j].vida <= 0) {
                         System.out.println("  - El zombie '" + t.tableroZ[i][j].getId() + "' ha muerto x_x");

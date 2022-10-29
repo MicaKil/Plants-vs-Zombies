@@ -9,7 +9,7 @@ public class Guisantralladora extends Planta {
     //protected boolean predecesor; //plantear bien esta exigencia
     public Guisantralladora(int x, int y){
         super(x,y);
-        this.danio=200;
+        this.danio=100;
         this.costo=250;
         this.id ='U';
     }

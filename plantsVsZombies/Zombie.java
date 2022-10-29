@@ -44,7 +44,7 @@ public class Zombie {
         int vida = tablero.tableroP[i][j - 1].getVida() - tablero.tableroZ[i][j].getDanio();
         if (vida > 0) {
             tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
-            System.out.printf("- La planta %s en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n",
+            System.out.printf("- La planta '%s' en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n",
                     tablero.tableroP[i][j - 1].getId(), i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
         } else { // si mata a la planta
             switch (tablero.tableroP[i][j - 1].getId()) { // si mata a una de estas plantas...
@@ -52,7 +52,7 @@ public class Zombie {
                 case 'R' -> juego.setCantRepetidora(juego.getCantRepetidora() - 1);
                 case 'P' -> juego.setCantPatatapum(juego.getCantPatatapum() - 1);
             }
-            System.out.printf("- Un zombie ha comido a la planta %s en la posición (%d,%d)! T-T\n", tablero.tableroP[i][j - 1].getId(), i, j - 1);
+            System.out.printf("- Un zombie ha comido a la planta '%s' en la posición (%d,%d)! T-T\n", tablero.tableroP[i][j - 1].getId(), i + 1, j - 1);
             tablero.tableroP[i][j - 1] = null; //la eliminamos
             zombie.setAtacando(false); //deja de atacar
         }

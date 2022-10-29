@@ -42,7 +42,7 @@ public class Lector extends Zombie {
         boolean encontroLugar = false;
         // VER SI PUEDE PASAR ADELANTE DE OTROS ZOMBIES
         // while (tablero.tableroP[i][k] == null && k > 0)
-        while (tablero.tableroP[i][k] == null && tablero.tableroZ[i][k] == null && k > 0) {
+        while (k >= 0 && tablero.tableroP[i][k] == null && tablero.tableroZ[i][k] == null) {
             encontroLugar = true;
             k--;
         }
