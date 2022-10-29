@@ -426,7 +426,7 @@ public class Tienda {
         do{
             System.out.println("Elija la posición que desee de las anteriores");
             opcion = read.nextLine();
-            if (Integer.parseInt(opcion)>cantPlanta){
+            if (Integer.parseInt(opcion)>cantPlanta || Integer.parseInt(opcion)==0){
                 System.out.println("No es una opción correcta");
             }
             else{
