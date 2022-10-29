@@ -34,7 +34,7 @@ public class PlantsVsZombies {
             tienda.comprarPlantas(this, tablero);
             System.out.println();
 
-            this.cantMovimientos ++; // suma uno al terminar de comprar
+            this.cantMovimientos++; // suma uno al terminar de comprar
 
             // Zombies
             // ---------------------------------------------------
@@ -45,13 +45,16 @@ public class PlantsVsZombies {
 
             //ataque de las plantas
             // ---------------------------------------------------
-            if (vidas > 0 && this.totalPlantas > 0 ){// no tiene sentido que ataquen si ya se perdió
+            if (vidas > 0 && this.totalPlantas > 0) {// no tiene sentido que ataquen si ya se perdió
                 fasePlantas();
                 tablero.mostrarTablero(this);
                 //esperar();
             }
 
-            this.cantMovimientos ++; // suma uno al terminar la fase de ataque
+            this.cantMovimientos++; // suma uno al terminar la fase de ataque
+
+            System.out.println("======================================================================================");
+            System.out.println();
 
             // chequear estado del juego
             // ---------------------------------------------------
@@ -62,13 +65,12 @@ public class PlantsVsZombies {
                 rtaSalir.nextLine();
             }
 
-            if (cantMovimientos >= 50 && vidas>0) {
+            if (cantMovimientos >= 50 && vidas > 0) {
                 System.out.println("Has ganado! :)");
                 Scanner rtaSalir = new Scanner(System.in);
                 System.out.println("Presione cualquier tecla para salir.");
                 rtaSalir.nextLine();
             }
-
         }
     }
 

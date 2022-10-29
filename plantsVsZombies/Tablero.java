@@ -26,6 +26,7 @@ public class Tablero {
         System.out.println("Zombies: z: Zombie, a: Abanderado, c: Caracono, b: Caracubo, l: Lector, s: Saltador");
         System.out.println("Plantas: B: Birasol, G: Girasol, L: Lanzaguisantes, R: Repetidora, H: Hielaguisantes, \n" +
                            "         N: Nuez, P: Patatapum, C: Petacereza, O: Gasoseta, U: Guisantralladora");
+        System.out.println();
         //System.out.println("======================================================================================");
 
         /*
@@ -59,31 +60,42 @@ public class Tablero {
     public void crearZombie() {
         Random rand = new Random();
 
-        int tipoZombie = rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
+        int tipoZombie = 3;//rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
 
         int fila;
         do { // en caso de que se genere un zombie en una casilla ocupada
             fila = rand.nextInt(5); // fila en la que va a aparecer el nuevo zombie
         } while (this.tableroZ[fila][9] != null);
 
-        Zombie nuevoZombie = null;
+        //Zombie nuevoZombie = null;
         switch (tipoZombie) {
-            case 0 -> nuevoZombie = new Zombie(fila);
+            case 0 -> {
+                Zombie nuevoZombie = new Zombie(fila);
+                this.tableroZ[fila][9] = nuevoZombie;
+            }
             case 1 -> { // caracono
-                nuevoZombie = new Zombie(fila);
+                Zombie nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('c');
                 nuevoZombie.setVida(150);
+                this.tableroZ[fila][9] = nuevoZombie;
             }
             case 2 -> { // caracubo
-                nuevoZombie = new Zombie(fila);
+                Zombie nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('b');
                 nuevoZombie.setVida(200);
+                this.tableroZ[fila][9] = nuevoZombie;
             }
-            case 3 -> nuevoZombie = new Saltador(fila);
-            case 4 -> nuevoZombie = new Lector(fila);
+            case 3 -> {
+                Zombie nuevoZombie = new Saltador(fila);
+                this.tableroZ[fila][9] = nuevoZombie;
+            }
+            case 4 -> {
+                Zombie nuevoZombie = new Lector(fila);
+                this.tableroZ[fila][9] = nuevoZombie;
+            }
             default -> System.out.println("Error al crear zombie.");
         }
-        this.tableroZ[fila][9] = nuevoZombie;
+
     }
     // caminan y atacan los zombies del tablero
     public void avanzarZombies(PlantsVsZombies juego) {
@@ -108,7 +120,7 @@ public class Tablero {
         }*/
 
         // si hay un zombie al lado de la planta...
-        if (this.tableroZ[p.x][p.y + 1] != null) {
+        if (this.tableroZ[p.x][p.y + 1] != null && this.tableroZ[p.x][p.y + 1].getId() != 's')  {
             this.tableroZ[p.x][p.y + 1].atacando = true; // va a empezar a atacarla
         }
     }

@@ -11,9 +11,6 @@ public class Zombie {
     protected int danio; // el daño que realiza al atacar
     protected boolean ralentizado; // si ha sido ralentizado
     protected boolean atacando;
-    //protected boolean tieneCono;
-    //protected boolean tieneCubo;
-
 
     public Zombie(int coorX) {
         this.id = 'z';
@@ -44,7 +41,8 @@ public class Zombie {
         int vida = tablero.tableroP[i][j - 1].getVida() - tablero.tableroZ[i][j].getDanio();
         if (vida > 0) {
             tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
-            System.out.printf("- La planta en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n", i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
+            System.out.printf("- La planta %s en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n",
+                    tablero.tableroP[i][j - 1].getId(), i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
         } else { // si mata a la planta
             switch (tablero.tableroP[i][j - 1].getId()) { // si mata a una de estas plantas...
                 case 'G' -> juego.setCantGirasoles(juego.getCantGirasoles() - 1); // reduce su cantidad en uno
@@ -52,7 +50,7 @@ public class Zombie {
                 case 'P' -> juego.setCantPatatapum(juego.getCantPatatapum() - 1);
             }
             tablero.tableroP[i][j - 1] = null; //la eliminamos
-            System.out.printf("- Un zombie ha comido a la planta en la posición (%d,%d)! T-T\n", i, j - 1);
+            System.out.printf("- Un zombie ha comido a la planta %s en la posición (%d,%d)! T-T\n", tablero.tableroP[i][j - 1].getId(), i, j - 1);
             zombie.setAtacando(false); //deja de atacar
         }
     }
