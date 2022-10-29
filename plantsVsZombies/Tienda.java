@@ -64,11 +64,22 @@ public class Tienda {
                             } else {
                                 System.out.println("Eligió el Girasol.");
                                 //obtener coordenadas de la nueva planta
+
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("el girasol");
                                     if (!(isCasillaVacia(juego.tablero, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
                                 } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+
+                                posPlanta = pedirPos("el girasol");
+                                //comprueba que no haya zombies ni plantas en el casillero
+                                boolean tableroVacio = comprobarTableroVacío(juego.tablero, posPlanta);
+                                while (tableroVacio){
+                                    System.out.println("El casillero está ocupado, vuelva a elegir");
+                                    posPlanta = pedirPos("el girasol");
+                                    tableroVacio = comprobarTableroVacío(juego.tablero, posPlanta);
+                                }
+
                                 Girasol g = new Girasol(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setCantGirasoles(juego.getCantGirasoles() + 1);
                                 juego.setSoles(juego.getSoles() - g.getCosto());
@@ -92,7 +103,7 @@ public class Tienda {
                                     if (!(isCasillaVacia(juego.tablero, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
                                 } while (!(isCasillaVacia(juego.tablero, posPlanta)));
-
+                               
                                 Lanzaguisantes l = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - l.getCosto());
                                 //agregar planta al tablero
@@ -209,6 +220,7 @@ public class Tienda {
                                     if (!(isCasillaVacia(juego.tablero, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
                                 } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+
                                 Petacereza p = new Petacereza(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - p.getCosto());
                                 //agregar planta al tablero
@@ -277,6 +289,7 @@ public class Tienda {
                                                 }
                                             }
                                         }
+                                        break;
                                     }
                                     case "2" -> {
                                         if (juego.getCantPatatapum() == 0) {
