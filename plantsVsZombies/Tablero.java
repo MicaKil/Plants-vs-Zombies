@@ -60,7 +60,7 @@ public class Tablero {
     public void crearZombie() {
         Random rand = new Random();
 
-        int tipoZombie = 3;//rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
+        int tipoZombie = rand.nextInt(5); // genera un numero random desde 0 a 5 (sin tomar el 5)
 
         int fila;
         do { // en caso de que se genere un zombie en una casilla ocupada

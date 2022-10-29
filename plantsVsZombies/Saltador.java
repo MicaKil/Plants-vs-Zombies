@@ -25,7 +25,8 @@ public class Saltador extends Zombie {
             tablero.tableroZ[i][j] = null; //borramos donde estaba antes
             // si al caminar queda al lado de una planta...
             if ((j - 2) >= 0 && tablero.tableroP[i][j - 2] != null ) {
-                //System.out.println("here");
+                //calcularSalto(tablero, juego, zombie, 2);
+                //System.out.println("here"); //COMENTADO PORQUE PUEDE FALLAR
                 if (tablero.tableroP[i][j - 2].getId() == 'N') {// si tiene una nuez adelante...
                     this.haSaltado = 0; //se cancela el salto
                     System.out.printf("- La nuez en (%d,%d) ha bloqueado el salto del zombie a su derecha!\n", i + 1, j - 1);
@@ -46,6 +47,7 @@ public class Saltador extends Zombie {
             } // si hay algo a su izquierda..
         } if ((j - 1) >= 0 && tablero.tableroP[i][j - 1] != null ) {
             //System.out.println("here 2");
+            //calcularSalto(tablero, juego, zombie, 1);
             if (tablero.tableroP[i][j - 1].getId() == 'N') {// si tiene una nuez adelante...
                 this.haSaltado = 0; //se cancela el salto
                 System.out.printf("- La nuez en (%d,%d) ha bloqueado el salto del zombie a su derecha!\n", i + 1, j - 1);
@@ -88,5 +90,29 @@ public class Saltador extends Zombie {
             }
         }
 
+
     }
+/* NO FUNCA
+    private void calcularSalto(Tablero tablero, PlantsVsZombies juego, Zombie zombie, int inc) {
+        int i = zombie.getX();
+        int j = zombie.getY();
+
+        //System.out.println("here");
+        if (tablero.tableroP[i][j - inc].getId() == 'N') {// si tiene una nuez adelante...
+            this.haSaltado = 0; //se cancela el salto
+            System.out.printf("- La nuez en (%d,%d) ha bloqueado el salto del zombie a su derecha!\n", i + 1, j - 1);
+        }
+        if (this.haSaltado == 0) { // si ya ha saltado ataca
+            //System.out.println("up 0");
+            tablero.tableroZ[i][j - (inc + 1)].setAtacando(true);
+        }
+        else if (this.haSaltado == 2) {
+            //System.out.println("up 2");
+            this.haSaltado--; // en el proximo turno salta
+        }
+        else if (this.haSaltado == 1) {
+            //System.out.println("up 1");
+            saltar(tablero, juego, zombie);
+        }
+    } */
 }
