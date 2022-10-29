@@ -9,12 +9,13 @@ public class PlantsVsZombies {
 
     protected int soles = 200;
     protected int vidas = 3;
-    protected double cantMovimientos = 0; // es double/float porque sino las operaciones de / y % resultan en la operacion entera
+    protected double cantMovimientos = 0.0; // es double/float porque sino las operaciones de / y % resultan en la operacion entera
     protected int totalZombies = 0;
     protected int totalPlantas = 0;
     protected int cantGirasoles=0;
     protected int cantPatatapum= 0;
     protected int cantRepetidora = 0;
+    protected int horda = 0;
 
     Tablero tablero = new Tablero();
     public PlantsVsZombies() {}
@@ -27,6 +28,7 @@ public class PlantsVsZombies {
         Tienda tienda = new Tienda();
 
         while (this.cantMovimientos < 51.0 && this.vidas > 0) {
+            //System.out.println("h " + this.horda);
             /*System.out.println("g " + this.getCantGirasoles());
             System.out.println("p " + this.getCantPatatapum());
             System.out.println("r " + this.getCantRepetidora());
@@ -41,14 +43,14 @@ public class PlantsVsZombies {
 
             faseZombies();
             tablero.mostrarTablero(this);
-            //esperar();
+            esperar();
 
             //ataque de las plantas
             // ---------------------------------------------------
             if (vidas > 0 && this.totalPlantas > 0) {// no tiene sentido que ataquen si ya se perdió
                 fasePlantas();
                 tablero.mostrarTablero(this);
-                //esperar();
+                esperar();
             }
 
             this.cantMovimientos++; // suma uno al terminar la fase de ataque
@@ -77,28 +79,46 @@ public class PlantsVsZombies {
     public void faseZombies() {
         System.out.println();
         System.out.println("**************************************************************************************");
-        System.out.println("Los zombies están avanzando!!!");
+        System.out.println("Los zombies avanzan!");
+        if (this.horda == 3) {
+            System.out.println("LA HORDA HA LLEGADO!!!");
+        }
         // modificar generacion de zombies a no tan pseudo aleatorio
         Random rand = new Random();
+
         int inicio = 0;
-        if (totalZombies == 0) //si no hay zombies solo se crean nuevos zombies
+        if (this.totalZombies == 0 && this.horda == 0) //si no hay zombies solo se crean nuevos zombies
             inicio = 1;
         else
             // caminan y atacan los zombies
             tablero.avanzarZombies(this);
 
-        int numZombies = rand.nextInt(inicio,4); //num de zombies a aparecer
-        totalZombies += numZombies;
+        if (this.horda == 0) {
+            int numZombies = rand.nextInt(inicio, 4); //num de zombies a aparecer
+            this.totalZombies += numZombies;
 
-        for (int i = 0; i < numZombies; i++) {
-            tablero.crearZombie();
+            for (int i = 0; i < numZombies; i++) {
+                tablero.crearZombie(this);
+            }
+        } else if (this.horda > 0){
+            if (this.horda < 4) {
+                for (int i = 0; i < 5; i++) {
+                    tablero.crearZombie(this);
+                }
+            }
+            this.horda-- ;
+            if (this.horda == 0) {
+                System.out.println();
+                System.out.println("La horda ha terminado! :,,)");
+                System.out.println();
+            }
         }
     }
 
     public void fasePlantas() {
         System.out.println();
         System.out.println("**************************************************************************************");
-        System.out.println("Ataque de las plantas!");
+        System.out.println("Las plantas atacan!");
         tablero.ataquePlantas(this);
     }
 
@@ -154,10 +174,6 @@ public class PlantsVsZombies {
         return cantMovimientos;
     }
 
-    public void setCantMovimientos(double cantMovimientos) {
-        this.cantMovimientos = cantMovimientos;
-    }
-
     public int getTotalZombies() {
         return totalZombies;
     }
@@ -174,11 +190,11 @@ public class PlantsVsZombies {
         this.totalPlantas = totalPlantas;
     }
 
-    public Tablero getTablero() {
-        return tablero;
+    public int getHorda() {
+        return horda;
     }
 
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
+    public void setHorda(int horda) {
+        this.horda = horda;
     }
 }

@@ -9,4 +9,8 @@ public class Abanderado extends Zombie {
         super(coorX);
         this.id = 'a';
     }
+
+    private void llamarHorda() {
+
+    }
 }

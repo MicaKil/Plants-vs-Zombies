@@ -9,7 +9,7 @@ public class Zombie {
     protected int y;
     protected int vida;
     protected int danio; // el daño que realiza al atacar
-    protected boolean ralentizado; // si ha sido ralentizado
+    protected int ralentizado; // si ha sido ralentizado
     protected boolean atacando;
 
     public Zombie(int coorX) {
@@ -18,14 +18,17 @@ public class Zombie {
         this.y = 9; //aparece en el extremo derecho
         this.vida = 100;
         this.danio = 25;
-        this.ralentizado = false;
+        this.ralentizado = 0;
         this.atacando = false;
     }
 
     protected void avanzar(Tablero tablero, PlantsVsZombies juego, Zombie zombie){
-        if (zombie.isRalentizado()) { // si estaba ralentizado...
-            zombie.setRalentizado(false); // se lo desralentiza
+        if (zombie.getRalentizado() == 2) { // si esta ralentizado...
+            zombie.setRalentizado(getRalentizado() - 1); // se lo desralentiza
         } else { // si no
+            if (zombie.getRalentizado() > 0) {
+                zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno
+            }
             if (zombie.isAtacando()) { //si el zombie está atacando
                 atacar(tablero, juego, zombie);
             } else { //si no está atacando...
@@ -49,8 +52,8 @@ public class Zombie {
                 case 'R' -> juego.setCantRepetidora(juego.getCantRepetidora() - 1);
                 case 'P' -> juego.setCantPatatapum(juego.getCantPatatapum() - 1);
             }
-            tablero.tableroP[i][j - 1] = null; //la eliminamos
             System.out.printf("- Un zombie ha comido a la planta %s en la posición (%d,%d)! T-T\n", tablero.tableroP[i][j - 1].getId(), i, j - 1);
+            tablero.tableroP[i][j - 1] = null; //la eliminamos
             zombie.setAtacando(false); //deja de atacar
         }
     }
@@ -76,31 +79,24 @@ public class Zombie {
     }
 
     // Getters y setters
-
     public char getId() {
         return this.id;
     }
-
     public void setId(char id) {
         this.id = id;
     }
-
     public int getX() {
         return this.x;
     }
-
     public void setX(int x) {
         this.x = x;
     }
-
     public int getY() {
         return this.y;
     }
-
     public void setY(int y) {
         this.y = y;
     }
-
     public int getVida() {
         return this.vida;
     }
@@ -110,18 +106,15 @@ public class Zombie {
     public int getDanio() {
         return this.danio;
     }
-    public boolean isRalentizado() {
+    public int getRalentizado() {
         return ralentizado;
     }
-
-    public void setRalentizado(boolean ralentizado) {
+    public void setRalentizado(int ralentizado) {
         this.ralentizado = ralentizado;
     }
-
     public boolean isAtacando() {
         return atacando;
     }
-
     public void setAtacando(boolean atacando) {
         this.atacando = atacando;
     }
