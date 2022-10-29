@@ -80,7 +80,7 @@ public class PlantsVsZombies {
         System.out.println();
         System.out.println("**************************************************************************************");
         System.out.println("Los zombies avanzan!");
-        if (this.horda == 3) {
+        if (this.horda == 3) { // podria ser max horda menos 2
             System.out.println("LA HORDA HA LLEGADO!!!");
         }
         // modificar generacion de zombies a no tan pseudo aleatorio
@@ -101,7 +101,7 @@ public class PlantsVsZombies {
                 tablero.crearZombie(this);
             }
         } else if (this.horda > 0){
-            if (this.horda < 4) {
+            if (this.horda <= 3) {
                 for (int i = 0; i < 5; i++) {
                     tablero.crearZombie(this);
                 }

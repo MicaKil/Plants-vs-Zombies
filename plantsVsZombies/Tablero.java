@@ -58,7 +58,7 @@ public class Tablero {
     // ------------------------------------------------
     // Métodos para los Zombies
     public void crearZombie(PlantsVsZombies juego) {
-        boolean cadaX = ((((juego.getCantMovimientos())/2.0)+1.0)%5.0==0.0); // cada X turnos x porque no estoy segura
+        boolean cadaX = true; //((((juego.getCantMovimientos())/2.0)+1.0)%5.0==0.0); // cada X turnos x porque no estoy segura
         Random rand = new Random();
         int up = 5;
         if (cadaX && juego.getHorda() == 0) { //cada X puede aparecer el abanderado si ha terminado una horda
@@ -71,7 +71,7 @@ public class Tablero {
             fila = rand.nextInt(5); // fila en la que va a aparecer el nuevo zombie
         } while (this.tableroZ[fila][9] != null);
 
-        Zombie nuevoZombie = null;
+        Zombie nuevoZombie;
         switch (tipoZombie) {
             case 0 -> {
                 nuevoZombie = new Zombie(fila);
