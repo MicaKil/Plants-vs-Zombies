@@ -6,20 +6,20 @@ package plantsVsZombies;
 
 public class Petacereza extends Planta {
     
-    protected int rangoX=3; //uno adelante y uno atras
-    protected int rangoY=3; 
     public Petacereza(int x, int y){
         super(x,y);
-        //rango
         this.danio=150;
         this.id='C';
         this.costo=150;
     }
+    
+    //hace 150 de daño a cada zombie que esté dentro del rango 3x3
     @Override
     public void atacar(Planta p, PlantsVsZombies juego){
         Tablero t = juego.tablero;
         int x = p.x;
         int y=p.y;
+        //verifica limites para no salirse del tablero
         int limInfX, limInfY, limSupX, limSupY;
         if ((x-1)<0){
             limInfX=x;
@@ -52,14 +52,17 @@ public class Petacereza extends Planta {
             j=limInfY;
             while (j<=limSupY){
                 if (t.tableroZ[i][j]!=null){
+                    //si encuentra un zombie le hace daño y avisa
                     int vidaActual = t.tableroZ[i][j].getVida() - this.danio;
                     t.tableroZ[i][j].setVida(vidaActual);
                     System.out.printf("- La petacereza en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
                             p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
+                    //si el zombie se queda sin vida avisa y lo elimina del tablero
                     if (t.tableroZ[i][j].vida <= 0) {
                         System.out.println("  - El zombie '" + t.tableroZ[i][j].getId() + "' ha muerto x_x");
                         t.tableroZ[i][j] = null;
                     } else {
+                        //detalles de caracono y caracubo 
                         if (t.tableroZ[i][j].getId() == 'c' && vidaActual <= 100) {
                             t.tableroZ[i][j].setId('z');
                             System.out.printf("  - El zombie 'c' ha perdido su cono! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
@@ -75,9 +78,7 @@ public class Petacereza extends Planta {
             }
             i++;
         }
+        //una vez que explota se elimina del tablero de plantas
         t.tableroP[x][y]=null;
     }
-          
-  
-    
 }
