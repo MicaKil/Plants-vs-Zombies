@@ -14,11 +14,16 @@ public class Gasoseta extends Planta {
         this.id = 'O';
          
     }
+
+    /*
+    Ataca a los zombies en un rango de 3x3
+    usa el tablero de zombies*/
     @Override
     public void atacar(Planta p, PlantsVsZombies juego){
         Tablero t = juego.tablero;
         int x = p.x;
         int y=p.y;
+        //revisa si está en alguna esquina y guarda el limite de movimiento que tiene la planta
         int limInfX, limInfY, limSupX, limSupY;
         if ((x-1)<0){
             limInfX=x;
@@ -47,20 +52,23 @@ public class Gasoseta extends Planta {
         
         int i,j;
         i=limInfX;
+        //avanza desde la posicion anterior (o la que está según el limite indicado anteriormente)
         while (i<=limSupX){
             j=limInfY;
             while (j<=limSupY){
                 if (t.tableroZ[i][j]!=null){
+                    //si encuentra un zombie en el tablero de zombies le resta vida
                     int vidaActual = t.tableroZ[i][j].getVida() - this.danio;
                     t.tableroZ[i][j].setVida(vidaActual);
                     System.out.printf("- La gasoseta en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
                             p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
-                    
+                    //si la vida baja a 0 o de 0 el zombie muere y se elimina del tablero de zombies
                     if (t.tableroZ[i][j].vida <= 0) {
                         System.out.println("  - El zombie '" + t.tableroZ[i][j].getId() + "' ha muerto x_x");
                         t.tableroZ[i][j] = null;
                     }
                     else {
+                        //cambia los id de los zombies por si eran caracono o caracubo, ataca de la misma forma que a los otros
                         if (t.tableroZ[i][j].getId() == 'c' && vidaActual <= 100) {
                             t.tableroZ[i][j].setId('z');
                             System.out.printf("  - El zombie 'c' ha perdido su cono! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
