@@ -118,7 +118,7 @@ public class Tienda {
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
                                 } while (!(isCasillaVacia(juego.tablero, posPlanta)));
 
-                                Planta r = new Planta(posPlanta[0] - 1, posPlanta[1] - 1);
+                                Planta r = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 r.setCosto(200);
                                 r.setDanio(50);
                                 r.setId('R');
@@ -280,7 +280,7 @@ public class Tienda {
                                            //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió Guisantralladora");
                                             int[] pos =posicionesDave('R', juego);
-                                            Planta g = new Planta(pos[0],pos[1]);
+                                            Planta g = new Lanzaguisantes(pos[0],pos[1]);
                                             g.setDanio(100);
                                             g.setId('U');
                                             g.setCosto(250);

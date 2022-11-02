@@ -6,8 +6,8 @@ package plantsVsZombies;
 
 public class Petacereza extends Planta {
     
-    //protected int rangoX=3; //uno adelante y uno atras
-    //protected int rangoY=3;  no los usamos
+    protected int rangoX=3; //uno adelante y uno atras
+    protected int rangoY=3; 
     public Petacereza(int x, int y){
         super(x,y);
         //rango

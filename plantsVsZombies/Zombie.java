@@ -3,7 +3,7 @@ Zombi: Zombi de jardín común, no tiene nada en especial.
  */
 package plantsVsZombies;
 
-public class Zombie {
+public class Zombie{
     protected char id; // char con el que se va identificar por pantalla
     protected int x;
     protected int y;

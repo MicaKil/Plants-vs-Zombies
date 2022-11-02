@@ -17,7 +17,7 @@ public class PlantsVsZombies {
     protected int cantRepetidora = 0;
     protected int horda = 0;
 
-    Tablero tablero = new Tablero();
+    Tablero tablero = new Tablero(); //asociacion
     public PlantsVsZombies() {}
 
     public void iniciar() {
