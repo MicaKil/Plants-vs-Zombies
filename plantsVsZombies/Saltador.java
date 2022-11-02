@@ -92,8 +92,6 @@ public class Saltador extends Zombie {
                 tablero.tableroZ[i][j].setAtacando(true);
             }
         }
-
-
     }
 /* NO FUNCA
     private void calcularSalto(Tablero tablero, PlantsVsZombies juego, Zombie zombie, int inc) {

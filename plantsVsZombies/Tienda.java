@@ -26,13 +26,13 @@ public class Tienda {
             System.out.println("Tiene: " + juego.getSoles() + " soles disponibles para comprar.");
             System.out.println("Si desea comprar ingrese S o s. Si desea continuar sin comprar apriete cualquier tecla.");
             String compra = read.nextLine();
-            switch (compra) {
-                case "S", "s" -> flagPlantas = true; //para iniciar el bucle de compra
-                default -> {
-                    comprarFlag = false;
-                    flagPlantas = false;
-                }
+            if (compra.equals("S") || compra.equals("s")) {
+                flagPlantas = true;
+            } else {
+                comprarFlag = false;
+                flagPlantas = false;
             }
+
             //poner opcion de ver que hace cada una?
             while (flagPlantas) {
                 String planta;
@@ -42,14 +42,13 @@ public class Tienda {
                 else{
 
                     System.out.println("Ingrese el número correspondiente a la planta que desea comprar.");
-                    System.out.println("""
-                            1: Girasol - Costo: 50 soles
-                            2: Lanzaguisantes - Costo: 100 soles
-                            3: Repetidora - Costo: 200 soles
-                            4: Hielaguisantes - Costo: 175 soles
-                            5: Nuez - Costo: 50 soles
-                            6: Patatapum - Costo: 25 soles
-                            7: Petacereza - Costo: 150 soles""");
+                    System.out.println("1: Girasol - Costo: 50 soles \n" +
+                            "2: Lanzaguisantes - Costo: 100 soles \n" +
+                            "3: Repetidora - Costo: 200 soles \n" +
+                            "4: Hielaguisantes - Costo: 175 soles \n" +
+                            "5: Nuez - Costo: 50 soles \n" +
+                            "6: Patatapum - Costo: 25 soles \n" +
+                            "7: Petacereza - Costo: 150 soles");
                     if (cada5){
                         System.out.println("8: Tienda de Crazy Dave! O.O");
                     }
@@ -75,7 +74,7 @@ public class Tienda {
                                 juego.setCantGirasoles(juego.getCantGirasoles() + 1);
                                 juego.setSoles(juego.getSoles() - g.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(g, juego);
+                                tablero.plantar(g);
                                 System.out.printf("ID de la planta: %s. \n", g.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -98,7 +97,7 @@ public class Tienda {
                                 Lanzaguisantes l = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - l.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(l, juego);
+                                tablero.plantar(l);
                                 System.out.printf("ID de la planta: %s. \n", l.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -125,7 +124,7 @@ public class Tienda {
                                 juego.setCantRepetidora(juego.getCantRepetidora() + 1);
                                 juego.setSoles(juego.getSoles() - r.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(r, juego);
+                                tablero.plantar(r);
                                 System.out.printf("ID de la planta: %s. \n", r.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -148,7 +147,7 @@ public class Tienda {
                                 Hielaguisantes h = new Hielaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - h.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(h, juego);
+                                tablero.plantar(h);
                                 System.out.printf("ID de la planta: %s. \n", h.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -171,7 +170,7 @@ public class Tienda {
                                 Nuez n = new Nuez(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - n.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(n, juego);
+                                tablero.plantar(n);
                                 System.out.printf("ID de la planta: %s. \n", n.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -195,7 +194,7 @@ public class Tienda {
                                 juego.setCantPatatapum(juego.getCantPatatapum() + 1);
                                 juego.setSoles(juego.getSoles() - pt.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(pt, juego);
+                                tablero.plantar(pt);
                                 System.out.printf("ID de la planta: %s. \n", pt.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -218,7 +217,7 @@ public class Tienda {
                                 Petacereza p = new Petacereza(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - p.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(p, juego);
+                                tablero.plantar(p);
                                 System.out.printf("ID de la planta: %s. \n", p.id);
                                 juego.totalPlantas ++;
                                 tablero.mostrarTablero(juego);
@@ -232,18 +231,19 @@ public class Tienda {
                                 System.out.println("Bienvenido a la tienda de Crazy Dave! ");
                                 System.out.println("Tenemos ofertas muy especiales! (OuO)/ "); //(✧∀✧) se muestra en pantalla como ???
                                 System.out.println("Ingrese el número correspondiente a la planta que quiere comprar.");
-                                System.out.println("""
-                                        1: Birasol - Costo 150 soles + Girasol
-                                        2: Gasoseta - Costo 150 soles + Patatapum
-                                        3: Guisantralladora - Costo 250 soles + Repetidora""");
+                                System.out.println("1: Birasol - Costo 150 soles + Girasol\n" +
+                                        "2: Gasoseta - Costo 150 soles + Patatapum\n" +
+                                        "3: Guisantralladora - Costo 250 soles + Repetidora");
                                 System.out.println("Si no tenés las plantas base necesarias o ya no querés comprar podes salir con E/e y volver a entrar después de comprar.");
                                 String rta= read.nextLine();
                                 switch (rta) {
-                                    case "E", "e" -> {
+                                    case "E":
+                                    case "e": {
                                         System.out.println("Saliendo de la tienda de Crazy Dave.");
                                         flagDave = false;
+                                        break;
                                     }
-                                    case "1" -> {
+                                    case "1": {
                                         if (juego.getCantGirasoles() == 0) {
                                             System.out.println("Necesitas girasoles para colocar un birasol.");
                                             flagDave = false;
@@ -257,8 +257,9 @@ public class Tienda {
                                             plantarDave(juego, b);
                                             tablero.mostrarTablero(juego);
                                         }
+                                        break;
                                     }
-                                    case "2" -> {
+                                    case "2": {
                                         if (juego.getCantPatatapum() == 0) {
                                             System.out.println("Necesita al menos un patatapum para colocar una gasoseta.");
                                         } 
@@ -272,7 +273,8 @@ public class Tienda {
                                             tablero.mostrarTablero(juego);
                                             }
                                         }
-                                    case "3" -> {
+                                        break;
+                                    case "3": {
                                         if (juego.getCantRepetidora() == 0) {
                                             System.out.println("Necesitas una repetidora para colocar una guisantralladora.");
                                         }
@@ -288,8 +290,9 @@ public class Tienda {
                                             plantarDave(juego, g);
                                             tablero.mostrarTablero(juego);
                                         }
+                                        break;
                                     }
-                                    default -> System.out.println("No eligió una opción correcta.");
+                                    default: System.out.println("No eligió una opción correcta.");
                                 }
                             }
                             flagPlantas=false;
@@ -320,13 +323,12 @@ public class Tienda {
             System.out.printf("Ingrese la fila de %s (fila = de 1 a 5)\n", tipoPlanta);
             try {
                 fila = Integer.parseInt(read.nextLine());
-                switch (fila) {
-                    case 1, 2, 3, 4, 5 -> {
-                        System.out.printf("Colocará a %s en la fila %d.\n",tipoPlanta, fila);
-                        coor[0] = fila;
-                        coorFlag = false;
-                    }
-                    default -> System.out.println("Fila inválida, ingrese de nuevo.");
+                if (fila > 0 && fila <= 5) {
+                    System.out.printf("Colocará a %s en la fila %d.\n",tipoPlanta, fila);
+                    coor[0] = fila;
+                    coorFlag = false;
+                } else {
+                    System.out.println("Fila inválida, ingrese de nuevo.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Debe ingresar un número del 1 al 5.");
@@ -340,18 +342,15 @@ public class Tienda {
             System.out.printf("Ingrese la columna de %s (columna = de 1 a 9)\n", tipoPlanta);
             try {
                 columna = Integer.parseInt(read.nextLine());
-                switch (columna) {
-                    case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> {
-                        System.out.printf("Colocará a %s en la columna %d.\n",tipoPlanta, columna);
-                        coor[1] = columna;
-                        coorFlag = false;
-                    }
-                    default -> {
-                        if (columna == 10)
-                            System.out.println("La columna 10 está reservada para los zombies.");
-                        else
-                            System.out.println("Columna inválida, ingrese de nuevo.");
-                    }
+                if (columna > 0 && columna < 10) {
+                    System.out.printf("Colocará a %s en la columna %d.\n",tipoPlanta, columna);
+                    coor[1] = columna;
+                    coorFlag = false;
+                } else {
+                    if (columna == 10)
+                        System.out.println("La columna 10 está reservada para los zombies.");
+                    else
+                        System.out.println("Columna inválida, ingrese de nuevo.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Debe ingresar un número del 1 al 9.");
@@ -363,11 +362,18 @@ public class Tienda {
         int n;
         Tablero tablero = juego.tablero;
         switch (c) {
-            case 'G' -> n = juego.getCantGirasoles();
-            case 'R' -> n = juego.getCantRepetidora();
-            case 'P' -> n = juego.getCantPatatapum();
-            default -> {
-                System.out.println("Error."); //es para mi
+            case 'G': {
+                n = juego.getCantGirasoles();
+                break;
+            }
+            case 'R': {
+                n = juego.getCantRepetidora();
+                break;}
+            case 'P': {
+                n = juego.getCantPatatapum();
+                break;}
+            default: {
+                System.out.println("Error.");
                 return null;
             }
         }
@@ -399,21 +405,36 @@ public class Tienda {
     //imprime las opciones
     private int[] posicionesDave(char id, PlantsVsZombies juego){
         int[][] pos = buscarPlantas(id, juego);
-        int cantPlantas=0;
+        int cantPlantas;
         switch (id){
-            case 'G' -> cantPlantas = juego.getCantGirasoles();
-            case 'R' -> cantPlantas = juego.getCantRepetidora();
-            case 'P' -> cantPlantas = juego.getCantPatatapum();
-            default -> System.out.println("Error."); //es para mi
-        }
-        System.out.println("Posiciones disponibles: ");
-        for (int i = 0; i < cantPlantas; i++) {
-            System.out.printf("%d. ", i + 1);
-            for (int j = 0; j < 2; j++) {
-                System.out.printf("%d ", pos[i][j] + 1);
+            case 'G': {
+                cantPlantas = juego.getCantGirasoles();
+                break;
             }
-            System.out.println();
+            case 'R': {
+                cantPlantas = juego.getCantRepetidora();
+                break;}
+            case 'P': {
+                cantPlantas = juego.getCantPatatapum();
+                break;}
+            default: {
+                System.out.println("Error.");
+                return null;
+            }
         }
+        if (pos != null) {
+            System.out.println("Posiciones disponibles: ");
+            for (int i = 0; i < cantPlantas; i++) {
+                System.out.printf("%d. ", i + 1);
+                for (int j = 0; j < 2; j++) {
+                    System.out.printf("%d ", pos[i][j] + 1);
+                }
+                System.out.println();
+            }
+        } else {
+            System.out.println("No hay posiciones disponibles.");
+        }
+
         //retorna la posicion elegida
         return isPosicionCorrectaDave(cantPlantas, pos);
     }
@@ -449,13 +470,22 @@ public class Tienda {
         Tablero t = juego.tablero;
         t.tableroP[p.x][p.y]=null;
         juego.setSoles(juego.getSoles() - p.getCosto());
-        t.plantar(p, juego);
+        t.plantar(p);
         System.out.printf("ID de la planta: %s. \n", p.id);
         switch (p.id){
-            case 'B' -> juego.cantGirasoles--;
-            case 'U' -> juego.cantRepetidora--;
-            case 'O' -> juego.cantPatatapum--;
-            default -> System.out.println("Error aaaa."); //es para mi
+            case 'B': {
+                juego.cantGirasoles--;
+                break;
+            }
+            case 'U': {
+                juego.cantRepetidora--;
+                break;
+            }
+            case 'O': {
+                juego.cantPatatapum--;
+                break;
+            }
+            default: System.out.println("Error aaaa."); //es para mi
         }
     }
 }

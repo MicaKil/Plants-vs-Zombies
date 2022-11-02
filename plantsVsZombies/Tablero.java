@@ -73,31 +73,36 @@ public class Tablero {
 
         Zombie nuevoZombie;
         switch (tipoZombie) {
-            case 0 -> {
+            case 0: {
                 nuevoZombie = new Zombie(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
+                break;
             }
-            case 1 -> { // caracono
+            case 1: { // caracono
                 nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('c');
                 nuevoZombie.setVida(150);
                 this.tableroZ[fila][9] = nuevoZombie;
+                break;
             }
-            case 2 -> { // caracubo
+            case 2: { // caracubo
                 nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('b');
                 nuevoZombie.setVida(200);
                 this.tableroZ[fila][9] = nuevoZombie;
+                break;
             }
-            case 3 -> {
+            case 3: {
                 nuevoZombie = new Saltador(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
+                break;
             }
-            case 4 -> {
+            case 4: {
                 nuevoZombie = new Lector(fila);
                 this.tableroZ[fila][9] = nuevoZombie;
+                break;
             }
-            case 5 -> {
+            case 5: {
                 nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('a');
                 this.tableroZ[fila][9] = nuevoZombie;
@@ -105,8 +110,9 @@ public class Tablero {
                 System.out.println("HORDA INCOMING!!!!!!"); // son las 4am no se me ocurre otra cosa
                 System.out.println();
                 juego.setHorda(5); // debería ser un número <= al de cada X
+                break;
             }
-            default -> System.out.println("Error al crear zombie.");
+            default: System.out.println("Error al crear zombie.");
         }
 
     }
@@ -127,7 +133,7 @@ public class Tablero {
 
     // ------------------------------------------------
     // Métodos de las plantas
-    public void plantar(Planta p, PlantsVsZombies juego){
+    public void plantar(Planta p){
         this.tableroP[p.x][p.y]=p;
         /*if (p instanceof Girasol){
             juego.cantGirasoles++;
