@@ -1,17 +1,14 @@
 /*
-tienen distinta vida los distintos lanzaguisantes?? buena pregunta
+clase abstracta de las plantas, implementa interfaz ataque para sus ataques
  */
 package plantsVsZombies;
-public abstract class Planta implements Ataques {  //// PODRÍA SER UNA CLASE ABSTRACTA
+public abstract class Planta implements Ataques { 
     protected char id; //nombre que aparece en la pantalla
     protected int vida;
     protected int danio;
     protected int costo;
     protected int x; 
     protected int y;
-    //protected String predecesor; 
-    //max coorY
-    //max coorX
     
     public Planta(int x, int y){
         this.vida=100;
@@ -21,14 +18,6 @@ public abstract class Planta implements Ataques {  //// PODRÍA SER UNA CLASE AB
         this.y=y;
     }
     
-    
-    //recibir el juego desde planta para hacer juego.tablero.setsoles y que no se rompa
-    
-    @Override
-    public abstract void atacar(Planta p, PlantsVsZombies juego);
-    
-    
-
     public char getId() {
         return id;
     }
