@@ -19,11 +19,10 @@ public class Girasol extends Planta {
         this.id='G';
         
     }
-
     @Override
-    //recibir el juego desde planta para hacer juego.tablero.setsoles y que no se rompa
+    //aumenta la cantidad de soles del juego en vez de atacar
     public void atacar(Planta p, PlantsVsZombies juego){
-
         juego.setSoles(juego.getSoles()+this.generaSol);
     }
+
 }
