@@ -135,13 +135,6 @@ public class Tablero {
     // Métodos de las plantas
     public void plantar(Planta p){
         this.tableroP[p.x][p.y]=p;
-        /*if (p instanceof Girasol){
-            juego.cantGirasoles++;
-        }
-        if (p instanceof Birasol){
-            juego.cantGirasoles=juego.cantGirasoles+2;
-        }*/
-
         // si hay un zombie al lado de la planta...
         if (this.tableroZ[p.x][p.y + 1] != null && this.tableroZ[p.x][p.y + 1].getId() != 's')  {
             this.tableroZ[p.x][p.y + 1].atacando = true; // va a empezar a atacarla
