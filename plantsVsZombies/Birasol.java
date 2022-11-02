@@ -14,8 +14,8 @@ public class Birasol extends Planta {
         this.danio=0;
         this.id = 'B';
     }
-   @Override
-    //recibir el juego desde planta para hacer juego.tablero.setsoles y que no se rompa
+    @Override
+    //no ataca, aumenta la cantidad de soles del juego
     public void atacar(Planta p, PlantsVsZombies juego){
         juego.setSoles(juego.getSoles()+this.generaSol);
     }
