@@ -49,7 +49,7 @@ public class Zombie{
         } else { // si mata a la planta
             switch (jardin.jardinP[i][j - 1].getId()) { // si mata a una de estas plantas...
                 case 'G': {
-                    juego.setCantGirasoles(juego.getCantGirasoles() - 1); // reduce su cantidad en uno
+                    juego.setCantGirasoles(juego.getCantGirasol() - 1); // reduce su cantidad en uno
                     break;
                 }
                 case 'R': {
@@ -62,6 +62,7 @@ public class Zombie{
                 }
             }
             System.out.printf("- Un zombie ha comido a la planta '%s' en la posición (%d,%d)! T-T\n", jardin.jardinP[i][j - 1].getId(), i + 1, j - 1);
+            juego.setTotalPlantas(juego.getTotalPlantas() - 1);
             jardin.jardinP[i][j - 1] = null; //la eliminamos
             zombie.setAtacando(false); //deja de atacar
         }

@@ -43,12 +43,18 @@ public class Jardin {
     // ------------------------------------------------
     // Métodos para los Zombies
     protected void crearZombie(Juego juego) {
-        int up = 5;
-        if (juego.puedeSalirHorda && juego.getHordaCounter() == 0) { //puede aparecer el abanderado si ha terminado una horda
-            up = 6;
-        }
+        int tipoZombie;
         Random rand = new Random();
-        int tipoZombie = rand.nextInt(up);
+
+        if (juego.getTurno() == 10 && !juego.haSalidoHorda) { // si es el turno 10 y no ha salido una horda...
+            tipoZombie = 5; // sale la horda
+        } else {
+            int up = 5;
+            if (juego.puedeSalirHorda && juego.getHordaCounter() == 0) { //puede aparecer el abanderado si ha terminado una horda
+                up = 6;
+            }
+            tipoZombie = rand.nextInt(up);
+        }
 
         int fila;
         do { // en caso de que se genere un zombie en una casilla ocupada // genera un numero random desde 0 a 5 (sin tomar el 5)
@@ -90,8 +96,10 @@ public class Jardin {
                 nuevoZombie = new Zombie(fila);
                 nuevoZombie.setId('a');
                 this.jardinZ[fila][9] = nuevoZombie;
+                System.out.println();
                 System.out.println("SE VIENE LA HORDA!!!");
-                juego.setHordaCounter(8); // el evento horda dura 7 turnos
+                juego.setHaSalidoHorda(true);
+                juego.setHordaCounter(8); // el evento horda dura 8 turnos
                 break;
             }
             default: System.out.println("Error al crear zombie.");
@@ -109,14 +117,14 @@ public class Jardin {
         }
     }
 
-    protected boolean columnaNotLlena() {
-        int counter = 0;
+    protected int filasLibres() {
+        int zombies = 0;
         for (int i = 0; i < 5; i++) {
             if (jardinZ[i][9] != null) {
-                counter++;
+                zombies++;
             }
         }
-        return counter < 5;
+        return 5 - zombies;
     }
 
     // ------------------------------------------------

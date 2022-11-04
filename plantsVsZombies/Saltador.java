@@ -25,29 +25,17 @@ public class Saltador extends Zombie {
             jardin.jardinZ[i][j] = null; //borramos donde estaba antes
             // si al caminar queda al lado de una planta...
             if ((j - 2) >= 0 && jardin.jardinP[i][j - 2] != null ) {
-                if (jardin.jardinP[i][j - 2].getId() == 'N') {// si tiene una nuez adelante...
-                    this.haSaltado = 0; //se cancela el salto
-                    System.out.printf("- La nuez en (%d,%d) ha bloqueado el salto del zombie a su derecha!\n", i + 1, j - 1);
-                }
-                if (this.haSaltado == 0) { // si ya ha saltado ataca
-                    //System.out.println("up 0");
-                    jardin.jardinZ[i][j - 1].setAtacando(true);
-                } else if (this.haSaltado == 2) {
+                if (this.haSaltado == 2) {
                     this.haSaltado--;
                 } else if (this.haSaltado == 1) {
                     //System.out.println("up 1");
                     this.haSaltado--;
                     saltar(jardin, juego, zombie);
                 }
-            } // si hay algo a su izquierda..
-        } if ((j - 1) >= 0 && jardin.jardinP[i][j - 1] != null ) {
-            if (jardin.jardinP[i][j - 1].getId() == 'N') {// si tiene una nuez adelante...
-                this.haSaltado = 0; //se cancela el salto
-                System.out.printf("- La nuez en (%d,%d) ha bloqueado el salto del zombie a su derecha!\n", i + 1, j - 1);
             }
-            if (this.haSaltado == 0) { // si ya ha saltado ataca
-                jardin.jardinZ[i][j].setAtacando(true);
-            } else if (this.haSaltado == 2) {
+        // si hay algo a su izquierda..
+        } if ((j - 1) >= 0 && jardin.jardinP[i][j - 1] != null ) {
+            if (this.haSaltado == 2) {
                 this.haSaltado--; // en el proximo turno salta
             } else if (this.haSaltado == 1) {
                 saltar(jardin, juego, zombie);
@@ -59,7 +47,6 @@ public class Saltador extends Zombie {
         }
     }
     private void saltar(Jardin jardin, Juego juego, Zombie zombie) {
-        this.haSaltado = 0;
         int i = zombie.getX();
         int j = zombie.getY();
         if ((j - 2) < 0) { // si al saltar sale del tablero
@@ -71,11 +58,17 @@ public class Saltador extends Zombie {
                 zombie.setY(j - 2);
                 jardin.jardinZ[i][j - 2] = zombie; // realiza el salto
                 jardin.jardinZ[i][j] = null; //borramos donde estaba antes
-                System.out.printf("- El zombie 's' en la posición (%d,%d) ha saltado a la posición (%d,%d).\n", i + 1, j + 1, i + 1, j - 1);
+                System.out.printf("- El zombie 's' en la posición (%d,%d) ha saltado a la posición (%d,%d). Su nuevo ID es 'z'.\n", i + 1, j + 1, i + 1, j - 1);
             } else {
-                System.out.printf("- El zombie 's' en la posición (%d,%d) no ha podido saltar ya que no hay lugar.\n", i + 1, j + 1);
+                System.out.printf("- El zombie 's' en la posición (%d,%d) no ha podido saltar ya que no hay lugar. Su nuevo ID es 'z'.\n", i + 1, j + 1);
                 jardin.jardinZ[i][j].setAtacando(true);
             }
+            // creamos al nuevo zombie
+            Zombie nuevoZ = new Zombie(i);
+            nuevoZ.setVida(zombie.getVida());
+            nuevoZ.setY(zombie.getY());
+            nuevoZ.setAtacando(zombie.isAtacando());
+            jardin.jardinZ[i][zombie.getY()] = nuevoZ;
         }
     }
 }

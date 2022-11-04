@@ -1,5 +1,5 @@
 /*
-• Patatapum: Una mina de papa que explota cuando un zombi la pisa, tarda un poco en activarse.
+Patatapum: Una mina de papa que explota cuando un zombi la pisa, tarda un poco en activarse.
 Tiene un coste de 25 soles.
  */
 package plantsVsZombies;
@@ -31,6 +31,7 @@ public class Patatapum extends Planta {
             //si muere el zombie avisa
             if (t.jardinZ[i][j + 1].vida <= 0) {
                 System.out.println("  - El zombie '" + t.jardinZ[i][j + 1].getId() + "' ha muerto x_x");
+                juego.setTotalZombies(juego.getTotalZombies() - 1);
                 t.jardinZ[i][j + 1] = null;
             } else {
                 //detalles de caracono y caracubo

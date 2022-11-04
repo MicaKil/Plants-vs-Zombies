@@ -1,5 +1,5 @@
 /*
-• Hielaguisantes: Lanza guisantes helados que ralentizan a los zombis, mas no los congela. Tiene un
+Hielaguisantes: Lanza guisantes helados que ralentizan a los zombis, mas no los congela. Tiene un
 coste de 175 soles.
  */
 package plantsVsZombies;
@@ -39,6 +39,7 @@ public class Hielaguisantes extends Planta {
                 //si la vida llega o baja de 0 el zombie muere, avisa que pasó
                 if (t.jardinZ[i][j].vida <= 0) {
                     System.out.println("  - El zombie '" + t.jardinZ[i][j].getId() + "' ha muerto x_x");
+                    juego.setTotalZombies(juego.getTotalZombies() - 1);
                     t.jardinZ[i][j] = null;
                 } else {
                     //si sigue con vida avisa cuanta vida tiene y en que posicion está

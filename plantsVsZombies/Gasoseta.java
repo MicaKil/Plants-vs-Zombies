@@ -1,5 +1,5 @@
 /*
-• Gasoseta: Expulsa gases alrededor de una área de 3x3 (9 cuadros). Se tiene que plantar sobre
+Gasoseta: Expulsa gases alrededor de una área de 3x3 (9 cuadros). Se tiene que plantar sobre
 Patatapum. Su coste es de 150 soles.
  */
 package plantsVsZombies;
@@ -20,7 +20,7 @@ public class Gasoseta extends Planta {
     usa el tablero de zombies*/
     @Override
     public void atacar(Planta p, Juego juego){
-        Jardin t = juego.jardin;
+        Jardin jardin = juego.jardin;
         int x = p.x;
         int y=p.y;
         //revisa si está en alguna esquina y guarda el limite de movimiento que tiene la planta
@@ -56,27 +56,28 @@ public class Gasoseta extends Planta {
         while (i<=limSupX){
             j=limInfY;
             while (j<=limSupY){
-                if (t.jardinZ[i][j]!=null){
+                if (jardin.jardinZ[i][j]!=null){
                     //si encuentra un zombie en el tablero de zombies le resta vida
-                    int vidaActual = t.jardinZ[i][j].getVida() - this.danio;
-                    t.jardinZ[i][j].setVida(vidaActual);
+                    int vidaActual = jardin.jardinZ[i][j].getVida() - this.danio;
+                    jardin.jardinZ[i][j].setVida(vidaActual);
                     System.out.printf("- La gasoseta en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
-                            p.getX() + 1, p.getY() + 1, p.getDanio(), t.jardinZ[i][j].getId(), i + 1, j + 1);
+                            p.getX() + 1, p.getY() + 1, p.getDanio(), jardin.jardinZ[i][j].getId(), i + 1, j + 1);
                     //si la vida baja a 0 o de 0 el zombie muere y se elimina del tablero de zombies
-                    if (t.jardinZ[i][j].vida <= 0) {
-                        System.out.println("  - El zombie '" + t.jardinZ[i][j].getId() + "' ha muerto x_x");
-                        t.jardinZ[i][j] = null;
+                    if (jardin.jardinZ[i][j].vida <= 0) {
+                        System.out.println("  - El zombie '" + jardin.jardinZ[i][j].getId() + "' ha muerto x_x");
+                        jardin.jardinZ[i][j] = null;
+                        juego.setTotalZombies(juego.getTotalZombies() - 1);
                     }
                     else {
                         //cambia los id de los zombies por si eran caracono o caracubo, ataca de la misma forma que a los otros
-                        if (t.jardinZ[i][j].getId() == 'c' && vidaActual <= 100) {
-                            t.jardinZ[i][j].setId('z');
+                        if (jardin.jardinZ[i][j].getId() == 'c' && vidaActual <= 100) {
+                            jardin.jardinZ[i][j].setId('z');
                             System.out.printf("  - El zombie 'c' ha perdido su cono! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
-                        } else if (t.jardinZ[i][j].getId() == 'b' && vidaActual <= 100) {
-                            t.jardinZ[i][j].setId('z');
+                        } else if (jardin.jardinZ[i][j].getId() == 'b' && vidaActual <= 100) {
+                            jardin.jardinZ[i][j].setId('z');
                             System.out.printf("  -  El zombie 'b' ha perdido su cubeta! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
                         } else {
-                            System.out.println("  - Vida del zombie '" + t.jardinZ[i][j].getId() + "' : " + vidaActual);
+                            System.out.println("  - Vida del zombie '" + jardin.jardinZ[i][j].getId() + "' : " + vidaActual);
                         }
                     }
                 }

@@ -30,6 +30,7 @@ public class Lanzaguisantes extends Planta {
                     //si se queda sin vida avisa que murió el zombie
                     if (t.jardinZ[i][j].vida <= 0) {
                         System.out.println("  - El zombie '" + t.jardinZ[i][j].getId() + "' ha muerto x_x");
+                        juego.setTotalZombies(juego.getTotalZombies() - 1);
                         t.jardinZ[i][j] = null;
                     } else {
                         //mismo ataque pero revisa si es caracono o caracubo y cambia el id

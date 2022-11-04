@@ -15,7 +15,6 @@ public class Lector extends Zombie {
         int i = zombie.getX();
         int j = zombie.getY();
         if (zombie.getVida() > 100) {
-            // si no hay nada adelante avanza  // PODRÍA SER INTERFACE???
             if (j > 0 && jardin.jardinZ[i][j - 1] == null && jardin.jardinP[i][j - 1] == null) {
                 zombie.setY(j - 1); //cambiamos la coor 'y' del zombie
                 jardin.jardinZ[i][j - 1] = jardin.jardinZ[i][j]; //lo movemos en el tablero
@@ -40,8 +39,6 @@ public class Lector extends Zombie {
         int j = zombie.getY();
         int k = j - 1;
         boolean encontroLugar = false;
-        // VER SI PUEDE PASAR ADELANTE DE OTROS ZOMBIES
-        // while (tablero.tableroP[i][k] == null && k > 0)
         while (k >= 0 && jardin.jardinP[i][k] == null && jardin.jardinZ[i][k] == null) {
             encontroLugar = true;
             k--;

@@ -1,5 +1,5 @@
 /*
-• Petacereza: Provoca una explosión en un área de 3x3 capaz de matar a casi cualquier zombi. Tiene
+Petacereza: Provoca una explosión en un área de 3x3 capaz de matar a casi cualquier zombi. Tiene
 un coste de 150 soles.
  */
 package plantsVsZombies;
@@ -60,6 +60,7 @@ public class Petacereza extends Planta {
                     //si el zombie se queda sin vida avisa y lo elimina del tablero
                     if (t.jardinZ[i][j].vida <= 0) {
                         System.out.println("  - El zombie '" + t.jardinZ[i][j].getId() + "' ha muerto x_x");
+                        juego.setTotalZombies(juego.getTotalZombies() - 1);
                         t.jardinZ[i][j] = null;
                     } else {
                         //detalles de caracono y caracubo 
