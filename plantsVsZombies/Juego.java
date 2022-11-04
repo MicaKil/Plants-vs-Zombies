@@ -217,7 +217,7 @@ public class Juego {
                 " ~ Plantas ~\n" +
                 "Son los personajes que te ayudarán a combatir los zombis y proteger tu jardín.\n" +
                 " - Lanzaguisantes: Dispara guisantes de uno en uno a los zombis una vez que entran en su carril. \n" +
-                " - Girasol: Produce soles con un valor de 25 para que puedas sembrar otras plantas, su producción de\n" +
+                " - Girasol: Produce soles con un valor de 25 para que puedas sembrar otras plantas.\n" +
                 " - Petacereza: Provoca una explosión en un área de 3x3 capaz de matar a casi cualquier zombi.\n" +
                 " - Nuez: Bloquea el paso de los zombis hasta ser devorada, aunque hay zombis que pueden saltarla.\n" +
                 " - Patatapum: Una mina de papa que explota cuando un zombi la pisa, tarda un poco en activarse.\n" +
