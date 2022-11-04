@@ -22,7 +22,7 @@ public class Zombie{
         this.atacando = false;
     }
 
-    protected void avanzar(Tablero tablero, PlantsVsZombies juego, Zombie zombie){
+    protected void avanzar(Jardin jardin, Juego juego, Zombie zombie){
         if (zombie.getRalentizado() == 2) { // si esta ralentizado...
             zombie.setRalentizado(getRalentizado() - 1); // se lo desralentiza
         } else { // si no
@@ -30,24 +30,24 @@ public class Zombie{
                 zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno
             }
             if (zombie.isAtacando()) { //si el zombie está atacando
-                atacar(tablero, juego, zombie);
+                atacar(jardin, juego, zombie);
             } else { //si no está atacando...
-                caminar(tablero, juego, zombie);
+                caminar(jardin, juego, zombie);
             }
         }
     }
 
-    protected void atacar(Tablero tablero, PlantsVsZombies juego, Zombie zombie) {
+    protected static void atacar(Jardin jardin, Juego juego, Zombie zombie) {
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
-        int vida = tablero.tableroP[i][j - 1].getVida() - tablero.tableroZ[i][j].getDanio();
+        int vida = jardin.jardinP[i][j - 1].getVida() - jardin.jardinZ[i][j].getDanio();
         if (vida > 0) {
-            tablero.tableroP[i][j - 1].setVida(vida); // le quita vida a la planta
+            jardin.jardinP[i][j - 1].setVida(vida); // le quita vida a la planta
             System.out.printf("- La planta '%s' en la posición (%d,%d) ha recibido %d de danio y su vida actual es %d.\n",
-                    tablero.tableroP[i][j - 1].getId(), i + 1, j, tablero.tableroZ[i][j].getDanio(), vida);
+                    jardin.jardinP[i][j - 1].getId(), i + 1, j, jardin.jardinZ[i][j].getDanio(), vida);
         } else { // si mata a la planta
-            switch (tablero.tableroP[i][j - 1].getId()) { // si mata a una de estas plantas...
+            switch (jardin.jardinP[i][j - 1].getId()) { // si mata a una de estas plantas...
                 case 'G': {
                     juego.setCantGirasoles(juego.getCantGirasoles() - 1); // reduce su cantidad en uno
                     break;
@@ -61,27 +61,27 @@ public class Zombie{
                     break;
                 }
             }
-            System.out.printf("- Un zombie ha comido a la planta '%s' en la posición (%d,%d)! T-T\n", tablero.tableroP[i][j - 1].getId(), i + 1, j - 1);
-            tablero.tableroP[i][j - 1] = null; //la eliminamos
+            System.out.printf("- Un zombie ha comido a la planta '%s' en la posición (%d,%d)! T-T\n", jardin.jardinP[i][j - 1].getId(), i + 1, j - 1);
+            jardin.jardinP[i][j - 1] = null; //la eliminamos
             zombie.setAtacando(false); //deja de atacar
         }
     }
 
-    protected void caminar(Tablero tablero, PlantsVsZombies juego, Zombie zombie) {
+    protected void caminar(Jardin jardin, Juego juego, Zombie zombie) {
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
         // si no hay nada adelante avanza
-        if (j > 0 && tablero.tableroZ[i][j - 1] == null && tablero.tableroP[i][j - 1] == null) {
+        if (j > 0 && jardin.jardinZ[i][j - 1] == null && jardin.jardinP[i][j - 1] == null) {
             zombie.setY(j - 1); //cambiamos la coor 'y' del zombie
-            tablero.tableroZ[i][j - 1] = tablero.tableroZ[i][j]; //lo movemos en el tablero
-            tablero.tableroZ[i][j] = null; //borramos donde estaba antes
+            jardin.jardinZ[i][j - 1] = jardin.jardinZ[i][j]; //lo movemos en el tablero
+            jardin.jardinZ[i][j] = null; //borramos donde estaba antes
             // si al caminar queda al lado de una planta...
-            if ((j - 2) >= 0 && tablero.tableroP[i][j - 2] != null) {
-                tablero.tableroZ[i][j - 1].setAtacando(true); //deja de caminar porque va a estar atacando
+            if ((j - 2) >= 0 && jardin.jardinP[i][j - 2] != null) {
+                jardin.jardinZ[i][j - 1].setAtacando(true); //deja de caminar porque va a estar atacando
             }
         } else if (j == 0) { // si el zombie se encuentra en el limite derecho
-            tablero.tableroZ[i][j] = null; //borramos donde estaba antes
+            jardin.jardinZ[i][j] = null; //borramos donde estaba antes
             System.out.println("Se ha pasado un zombie! (>_<)");
             juego.setVidas(juego.getVidas() - 1);
         }

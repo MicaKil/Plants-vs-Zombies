@@ -2,7 +2,7 @@
 clase abstracta de las plantas, implementa interfaz ataque para sus ataques
  */
 package plantsVsZombies;
-public abstract class Planta implements Ataques { 
+public abstract class Planta implements AtaquePlantas {
     protected char id; //nombre que aparece en la pantalla
     protected int vida;
     protected int danio;
@@ -22,9 +22,7 @@ public abstract class Planta implements Ataques {
         return id;
     }
 
-    public void setId(char id) {
-        this.id = id;
-    }
+    public void setId(char id) { this.id = id;}
 
     public int getVida() {
         return vida;
@@ -67,4 +65,3 @@ public abstract class Planta implements Ataques {
     }
     
 }
-

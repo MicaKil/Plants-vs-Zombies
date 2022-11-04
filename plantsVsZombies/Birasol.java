@@ -16,7 +16,7 @@ public class Birasol extends Planta {
     }
     @Override
     //no ataca, aumenta la cantidad de soles del juego
-    public void atacar(Planta p, PlantsVsZombies juego){
+    public void atacar(Planta p, Juego juego){
         juego.setSoles(juego.getSoles()+this.generaSol);
     }
     

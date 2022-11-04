@@ -5,22 +5,21 @@ import java.util.Scanner;
 
 public class Tienda {
     public Tienda() {}
-    public void comprarPlantas(PlantsVsZombies juego, Tablero tablero) {
-        //Modelado del juego con el usuario participando
+    protected void comprarPlantas(Juego juego, Jardin jardin) {
         boolean comprarFlag = juego.getSoles() >= 25; //si tiene menos de 25 soles no puede comprar
         boolean flagPlantas;
-        boolean cada5 = true; //((((juego.getCantMovimientos())/2.0)+1.0)%5.0==0.0);  //para que aparezca la tienda de dave cada 5 turmos
+        boolean cada5 = ((juego.getTurno()%5.0) == 0);  //para que aparezca la tienda de dave cada 5 turmos
         Scanner read = new Scanner(System.in);
         int[] posPlanta;
         //bucle de compra
         while (comprarFlag) {
             //en el primer turno solo puede comprar girasoles
-            if (juego.getCantMovimientos()==0){
+            if (juego.getTurno() == 1){
                 System.out.println("En el primer turno solo puede comprar girasoles.");
             }
             //agregar opcion para cancelar, volver a elegir coordenada
             if (cada5){
-                    System.out.println("*** Está disponible la Tienda de Crazy Dave! ***"); // ヽ(・∀・)ﾉ  se ve como ???
+                    System.out.println("*** Está disponible la Tienda de Crazy Dave! ***");
                     System.out.println("Para comprar en la tienda, ingrese el menu de compra.");
                     }
             System.out.println("Tiene: " + juego.getSoles() + " soles disponibles para comprar.");
@@ -36,7 +35,7 @@ public class Tienda {
             //poner opcion de ver que hace cada una?
             while (flagPlantas) {
                 String planta;
-                if (juego.getCantMovimientos() == 0){
+                if (juego.getTurno() == 1){
                     planta = "1";
                 }
                 else{
@@ -66,18 +65,18 @@ public class Tienda {
 
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("el girasol");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Girasol g = new Girasol(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setCantGirasoles(juego.getCantGirasoles() + 1);
                                 juego.setSoles(juego.getSoles() - g.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(g);
+                                jardin.plantar(g);
                                 System.out.printf("ID de la planta: %s. \n", g.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -90,17 +89,17 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("el lanzaguisantes");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
                                
                                 Lanzaguisantes l = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - l.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(l);
+                                jardin.plantar(l);
                                 System.out.printf("ID de la planta: %s. \n", l.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -113,9 +112,9 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("la repetidora");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Planta r = new Lanzaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 r.setCosto(200);
@@ -124,10 +123,10 @@ public class Tienda {
                                 juego.setCantRepetidora(juego.getCantRepetidora() + 1);
                                 juego.setSoles(juego.getSoles() - r.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(r);
+                                jardin.plantar(r);
                                 System.out.printf("ID de la planta: %s. \n", r.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -140,17 +139,17 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("el hielaguisantes");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Hielaguisantes h = new Hielaguisantes(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - h.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(h);
+                                jardin.plantar(h);
                                 System.out.printf("ID de la planta: %s. \n", h.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -163,17 +162,17 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("la nuez");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Nuez n = new Nuez(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - n.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(n);
+                                jardin.plantar(n);
                                 System.out.printf("ID de la planta: %s. \n", n.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -186,18 +185,18 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("el patatapum");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Patatapum pt = new Patatapum(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setCantPatatapum(juego.getCantPatatapum() + 1);
                                 juego.setSoles(juego.getSoles() - pt.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(pt);
+                                jardin.plantar(pt);
                                 System.out.printf("ID de la planta: %s. \n", pt.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -210,17 +209,17 @@ public class Tienda {
                                 //obtener coordenadas de la nueva planta
                                 do { //comprueba que no haya zombies ni plantas en el casillero
                                     posPlanta = pedirPos("la petacereza");
-                                    if (!(isCasillaVacia(juego.tablero, posPlanta)))
+                                    if (!(isCasillaVacia(juego.jardin, posPlanta)))
                                         System.out.println("El casillero está ocupado, vuelva a elegir");
-                                } while (!(isCasillaVacia(juego.tablero, posPlanta)));
+                                } while (!(isCasillaVacia(juego.jardin, posPlanta)));
 
                                 Petacereza p = new Petacereza(posPlanta[0] - 1, posPlanta[1] - 1);
                                 juego.setSoles(juego.getSoles() - p.getCosto());
                                 //agregar planta al tablero
-                                tablero.plantar(p);
+                                jardin.plantar(p);
                                 System.out.printf("ID de la planta: %s. \n", p.id);
                                 juego.totalPlantas ++;
-                                tablero.mostrarTablero(juego);
+                                jardin.mostrarJardin(juego);
                                 flagPlantas = false; // termina la compra actual
                             }
                             break;
@@ -234,7 +233,7 @@ public class Tienda {
                                 System.out.println("1: Birasol - Costo 150 soles + Girasol\n" +
                                         "2: Gasoseta - Costo 150 soles + Patatapum\n" +
                                         "3: Guisantralladora - Costo 250 soles + Repetidora");
-                                System.out.println("Si no tenés las plantas base necesarias o ya no querés comprar podes salir con E/e y volver a entrar después de comprar.");
+                                System.out.println("Si no tenés las plantas base necesarias o ya no querés comprar podes salir con E/e.");
                                 String rta= read.nextLine();
                                 switch (rta) {
                                     case "E":
@@ -246,7 +245,6 @@ public class Tienda {
                                     case "1": {
                                         if (juego.getCantGirasoles() == 0) {
                                             System.out.println("Necesitas girasoles para colocar un birasol.");
-                                            flagDave = false;
                                         } else {
                                             //buscar donde hay girasoles y darle solo esas opciones
                                             System.out.println("Eligió Birasol");
@@ -255,7 +253,7 @@ public class Tienda {
                                             Birasol b = new Birasol(pos[0],pos[1]);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta girasoles
                                             plantarDave(juego, b);
-                                            tablero.mostrarTablero(juego);
+                                            jardin.mostrarJardin(juego);
                                         }
                                         break;
                                     }
@@ -270,7 +268,7 @@ public class Tienda {
                                             Gasoseta g = new Gasoseta(pos[0],pos[1]);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta patatapum
                                             plantarDave(juego, g);
-                                            tablero.mostrarTablero(juego);
+                                            jardin.mostrarJardin(juego);
                                             }
                                         }
                                         break;
@@ -288,7 +286,7 @@ public class Tienda {
                                             g.setCosto(250);
                                             //recibe la planta y juego, vacía el tablero, setea soles, planta, resta repetetidora
                                             plantarDave(juego, g);
-                                            tablero.mostrarTablero(juego);
+                                            jardin.mostrarJardin(juego);
                                         }
                                         break;
                                     }
@@ -358,9 +356,9 @@ public class Tienda {
         }
         return coor;
     }
-    private int[][] buscarPlantas(char c, PlantsVsZombies juego) {
+    private static int[][] buscarPlantas(char c, Juego juego) {
         int n;
-        Tablero tablero = juego.tablero;
+        Jardin jardin = juego.jardin;
         switch (c) {
             case 'G': {
                 n = juego.getCantGirasoles();
@@ -384,7 +382,7 @@ public class Tienda {
         while (i < 5 && fila <= n) {
             j = 0;
             while (j < 9 && fila <= n){
-                if (tablero.tableroP[i][j] != null && tablero.tableroP[i][j].getId() == c) {
+                if (jardin.jardinP[i][j] != null && jardin.jardinP[i][j].getId() == c) {
                     posiciones[fila][0] = i;
                     posiciones[fila][1] = j;
                     fila ++;
@@ -397,13 +395,13 @@ public class Tienda {
     }
     //comprueba que no haya zombies ni plantas en el casillero
     //recibe el tablero y la posición de la nueva planta
-    private boolean isCasillaVacia(Tablero t, int[] pos){
+    private static boolean isCasillaVacia(Jardin t, int[] pos){
         //si los tableros de zombies y plantas están vacíos retorna true
-        return t.tableroP[pos[0] - 1][pos[1] - 1] == null && t.tableroZ[pos[0] - 1][pos[1] - 1] == null;
+        return t.jardinP[pos[0] - 1][pos[1] - 1] == null && t.jardinZ[pos[0] - 1][pos[1] - 1] == null;
     } 
     
     //imprime las opciones
-    private int[] posicionesDave(char id, PlantsVsZombies juego){
+    private static int[] posicionesDave(char id, Juego juego){
         int[][] pos = buscarPlantas(id, juego);
         int cantPlantas;
         switch (id){
@@ -436,11 +434,11 @@ public class Tienda {
         }
 
         //retorna la posicion elegida
-        return isPosicionCorrectaDave(cantPlantas, pos);
+        return isPosCorrectaDave(cantPlantas, pos);
     }
     //corrobora que se elija bien la posicion y retorna la posicion
-    private int[] isPosicionCorrectaDave(int cantPlanta, int[][] pos){
-        boolean posicionCorrecta=false;
+    private static int[] isPosCorrectaDave(int cantPlanta, int[][] pos){
+        boolean posCorrecta=false;
         Scanner read = new Scanner(System.in);
         int[] p = new int[2];
         String opcion;
@@ -451,24 +449,22 @@ public class Tienda {
                 if (Integer.parseInt(opcion) > cantPlanta || Integer.parseInt(opcion) <= 0) {
                     System.out.println("No es una opción correcta"); //estaría bueno que vuelva a imprimir las opciones
                 } else {
-                    posicionCorrecta = true;
+                    posCorrecta = true;
 
                     p[0]=pos[Integer.parseInt(opcion)-1][0];
                     p[1]=pos[Integer.parseInt(opcion)-1][1];
-                    //return Integer.parseInt(opcion);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Debe ingresar un número");
             }
-        } while(!posicionCorrecta);
-        //posicion final elegida
+        } while(!posCorrecta); //posicion final elegida
         return p;
     }
 
     /// no debería estar en el tablero o juego?
-    private void plantarDave(PlantsVsZombies juego, Planta p){
-        Tablero t = juego.tablero;
-        t.tableroP[p.x][p.y]=null;
+    private static void plantarDave(Juego juego, Planta p){
+        Jardin t = juego.jardin;
+        t.jardinP[p.x][p.y]=null;
         juego.setSoles(juego.getSoles() - p.getCosto());
         t.plantar(p);
         System.out.printf("ID de la planta: %s. \n", p.id);
@@ -485,7 +481,7 @@ public class Tienda {
                 juego.cantPatatapum--;
                 break;
             }
-            default: System.out.println("Error aaaa."); //es para mi
+            default: System.out.println("Error.");
         }
     }
 }

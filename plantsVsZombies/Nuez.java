@@ -14,7 +14,7 @@ public class Nuez extends Planta {
     }
     
     @Override
-    public void atacar(Planta p, PlantsVsZombies juego){
+    public void atacar(Planta p, Juego juego){
         //no hace nada
     }    
 }

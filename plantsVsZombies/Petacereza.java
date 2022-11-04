@@ -15,8 +15,8 @@ public class Petacereza extends Planta {
     
     //hace 150 de daño a cada zombie que esté dentro del rango 3x3
     @Override
-    public void atacar(Planta p, PlantsVsZombies juego){
-        Tablero t = juego.tablero;
+    public void atacar(Planta p, Juego juego){
+        Jardin t = juego.jardin;
         int x = p.x;
         int y=p.y;
         //verifica limites para no salirse del tablero
@@ -51,26 +51,26 @@ public class Petacereza extends Planta {
         while (i<=limSupX){
             j=limInfY;
             while (j<=limSupY){
-                if (t.tableroZ[i][j]!=null){
+                if (t.jardinZ[i][j]!=null){
                     //si encuentra un zombie le hace daño y avisa
-                    int vidaActual = t.tableroZ[i][j].getVida() - this.danio;
-                    t.tableroZ[i][j].setVida(vidaActual);
+                    int vidaActual = t.jardinZ[i][j].getVida() - this.danio;
+                    t.jardinZ[i][j].setVida(vidaActual);
                     System.out.printf("- La petacereza en la posición (%d,%d) le hizo %d de daño a: '%s' en la posición (%d,%d).\n",
-                            p.getX() + 1, p.getY() + 1, p.getDanio(), t.tableroZ[i][j].getId(), i + 1, j + 1);
+                            p.getX() + 1, p.getY() + 1, p.getDanio(), t.jardinZ[i][j].getId(), i + 1, j + 1);
                     //si el zombie se queda sin vida avisa y lo elimina del tablero
-                    if (t.tableroZ[i][j].vida <= 0) {
-                        System.out.println("  - El zombie '" + t.tableroZ[i][j].getId() + "' ha muerto x_x");
-                        t.tableroZ[i][j] = null;
+                    if (t.jardinZ[i][j].vida <= 0) {
+                        System.out.println("  - El zombie '" + t.jardinZ[i][j].getId() + "' ha muerto x_x");
+                        t.jardinZ[i][j] = null;
                     } else {
                         //detalles de caracono y caracubo 
-                        if (t.tableroZ[i][j].getId() == 'c' && vidaActual <= 100) {
-                            t.tableroZ[i][j].setId('z');
+                        if (t.jardinZ[i][j].getId() == 'c' && vidaActual <= 100) {
+                            t.jardinZ[i][j].setId('z');
                             System.out.printf("  - El zombie 'c' ha perdido su cono! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
-                        } else if (t.tableroZ[i][j].getId() == 'b' && vidaActual <= 100) {
-                            t.tableroZ[i][j].setId('z');
+                        } else if (t.jardinZ[i][j].getId() == 'b' && vidaActual <= 100) {
+                            t.jardinZ[i][j].setId('z');
                             System.out.printf("  -  El zombie 'b' ha perdido su cubeta! Su nuevo ID es 'z'. Vida actual: %d. \n", vidaActual);
                         } else {
-                            System.out.println("  - Vida del zombie '" + t.tableroZ[i][j].getId() + "' : " + vidaActual);
+                            System.out.println("  - Vida del zombie '" + t.jardinZ[i][j].getId() + "' : " + vidaActual);
                         }
                     }
                 }
@@ -79,6 +79,6 @@ public class Petacereza extends Planta {
             i++;
         }
         //una vez que explota se elimina del tablero de plantas
-        t.tableroP[x][y]=null;
+        t.jardinP[x][y]=null;
     }
 }

@@ -6,7 +6,7 @@ public class Main {
         // ver que hacer con las reglas
         //System.out.println("Reglas: ");
 
-        PlantsVsZombies juego = new PlantsVsZombies();
+        Juego juego = new Juego();
         juego.iniciar(); //iniciar
     }
 }
