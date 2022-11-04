@@ -228,7 +228,7 @@ public class Juego {
                 "Las siguientes plantas se consiguen comprandolas en dicha tienda. Son modificaciones para\n" +
                 "una planta inicial en específico. Para usarse se deben plantar sobre la planta indicada.\n" +
                 " - Guisantralladora: Dispara cuatro guisantes a la vez. Para plantarla en el patio se necesita estar\n" +
-                "plantada sobre una Repetidora.\n" +
+                "   plantada sobre una Repetidora.\n" +
                 " - Birasol: Proporciona el doble de soles que el Girasol. Se necesita estar plantada sobre un Girasol.\n" +
                 " - Gasoseta: Expulsa gases alrededor de una área de 3x3. Se tiene que plantar sobre Patatapum. \n" + "\n" +
                 " ~ Zombies ~\n" +
@@ -238,7 +238,7 @@ public class Juego {
                 "   zombis y luego llega la horda.\n" +
                 " - Zombi Caracono: Su cono lo hace un poco más resistente que el zombi básico.\n" +
                 " - Zombi saltador de pértiga: Salta sobre la primera planta que encuentra con su pértiga para luego\n" +
-                "   caminar. Nuez-Cáscara Rabias puede detener su salto.\n" +
+                "   caminar. La Nuez puede detener su salto.\n" +
                 " - Zombi Caracubo: Su cubo lo hace el más resistente de los zombis comunes y corriente.\n" +
                 " - Zombi Lector: Es un zombi que lleva un periódico. Cuando destruyen su periódico se enoja y salta\n" +
                 "   hasta la planta para comer a tus plantas.");

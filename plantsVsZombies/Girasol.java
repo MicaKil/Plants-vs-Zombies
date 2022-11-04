@@ -6,8 +6,6 @@ Birasol: Proporciona el doble de soles que el Girasol. Se necesita estar plantad
 Su coste inicial de 150 soles.
  */
 package plantsVsZombies;
-
-
 public class Girasol extends Planta {
     protected int generaSol;
 
