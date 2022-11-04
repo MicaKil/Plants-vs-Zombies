@@ -219,7 +219,7 @@ public class Juego {
                 " - Lanzaguisantes: Dispara guisantes de uno en uno a los zombis una vez que entran en su carril. \n" +
                 " - Girasol: Produce soles con un valor de 25 para que puedas sembrar otras plantas.\n" +
                 " - Petacereza: Provoca una explosión en un área de 3x3 capaz de matar a casi cualquier zombi.\n" +
-                " - Nuez: Bloquea el paso de los zombis hasta ser devorada, aunque hay zombis que pueden saltarla.\n" +
+                " - Nuez: Bloquea el paso de los zombis hasta ser devorada.\n" +
                 " - Patatapum: Una mina de papa que explota cuando un zombi la pisa, tarda un poco en activarse.\n" +
                 " - Hielaguisantes: Lanza guisantes helados que ralentizan a los zombis, mas no los congela.\n" +
                 " - Repetidora: Es como el lanzaguisantes, con la diferencia de que dispara 2 guisantes a la vez. \n" + "\n" +
