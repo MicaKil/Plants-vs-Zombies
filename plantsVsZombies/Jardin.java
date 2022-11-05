@@ -147,5 +147,29 @@ public class Jardin {
             }
         }
     }
+    
+     //método que planta las plantas de la tienda de Dave
+    public static void plantarDave(Juego juego, Planta p){
+        Jardin t = juego.jardin;
+        t.jardinP[p.x][p.y]=null;
+        juego.setSoles(juego.getSoles() - p.getCosto());
+        t.plantar(p);
+        System.out.printf("ID de la planta: %s. \n", p.id);
+        switch (p.id){
+            case 'B': {
+                juego.cantGirasoles--;
+                break;
+            }
+            case 'U': {
+                juego.cantRepetidora--;
+                break;
+            }
+            case 'O': {
+                juego.cantPatatapum--;
+                break;
+            }
+            default: System.out.println("Error.");
+        }
+    }
 
 }
