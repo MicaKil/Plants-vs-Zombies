@@ -47,12 +47,8 @@ public class Lanzaguisantes extends Planta {
                 }
             }
             else {
-                if (j<9){
-                    j++;
-                }
-                else{
-                    foundZombie=true;
-                }
+                if (j<9) { j++; }
+                else { foundZombie=true; }
             }
         }
     }

@@ -149,7 +149,7 @@ public class Jardin {
     }
     
      //método que planta las plantas de la tienda de Dave
-    public void plantarDave(Juego juego, Planta p){
+    protected void plantarDave(Juego juego, Planta p){
         Jardin t = juego.jardin;
         t.jardinP[p.x][p.y]=null;
         juego.setSoles(juego.getSoles() - p.getCosto());
@@ -171,5 +171,4 @@ public class Jardin {
             default: System.out.println("Error.");
         }
     }
-
 }

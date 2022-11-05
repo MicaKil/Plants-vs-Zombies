@@ -217,7 +217,7 @@ public class Tienda {
                             boolean flagDave;
                             do {
                                 if (juego.getSoles() < 150) {
-                                    System.out.println("No tienes los soles suficientes para la tienda de Dave. :c");
+                                    System.out.println("No tienes los soles suficientes para la tienda de Dave.");
                                     Juego.esperar();
                                     flagDave = false;
                                 } else if (!hayPlantas(juego)) {
@@ -481,6 +481,5 @@ public class Tienda {
         } while(!posCorrecta); //posicion final elegida
         return p;
     }
-
 }
                                             

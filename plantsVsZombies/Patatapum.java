@@ -50,6 +50,7 @@ public class Patatapum extends Planta {
         else {
             //se activa si hay un zombie adelante
             if (t.jardinZ[i][j + 1]!=null && t.jardinZ[i][j + 1] != null){
+                System.out.printf("- El patatapum en la posición (%d,%d) se ha activado!\n", i + 1, j + 1);
                 this.explotar=true;
             }
         

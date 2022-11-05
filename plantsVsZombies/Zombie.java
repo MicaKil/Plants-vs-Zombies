@@ -24,7 +24,7 @@ public class Zombie{
 
     protected void avanzar(Jardin jardin, Juego juego, Zombie zombie){
         if (zombie.getRalentizado() == 2) { // si esta ralentizado...
-            zombie.setRalentizado(getRalentizado() - 1); // se lo desralentiza
+            zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno
         } else { // si no
             if (zombie.getRalentizado() > 0) {
                 zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno

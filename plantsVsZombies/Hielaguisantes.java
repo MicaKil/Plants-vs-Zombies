@@ -9,7 +9,7 @@ public class Hielaguisantes extends Planta {
     public Hielaguisantes(int x, int y){
         super(x,y);
         this.costo=175;
-        this.danio = 10;
+        this.danio = 15;
         this.id='H';
     }
     

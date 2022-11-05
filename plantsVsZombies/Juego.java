@@ -1,5 +1,3 @@
-// Clase del juego PvsZ
-
 package plantsVsZombies;
 
 import java.util.Random;
