@@ -81,7 +81,7 @@ public class Juego {
                 Random rand = new Random();
                 int bound = Math.min(jardin.filasLibres(), 4); // toma el min entre los espacios libres en la columna 10 y 4
                 // ej: si tenemos solo un 1 espacio vacío no pueden salir 3 zombies -> bucle infinito
-                int numZombies = rand.nextInt(bound); //pueden apareces hasta 4 (sin incluir) zombies
+                int numZombies = rand.nextInt(bound); //pueden apareces hasta 3 zombies (no incluye al 4)
                 this.totalZombies += numZombies;
                 for (int i = 0; i < numZombies; i++) {
                     jardin.crearZombie(this);
@@ -165,7 +165,7 @@ public class Juego {
                 }
             } else {
                 System.out.println("Tiene: " + this.soles + " soles disponibles para comprar.");
-                System.out.println("'S'/'s': Si desea comprar ingrese S o s. Si desea continuar sin comprar apriete cualquier otra tecla.");
+                System.out.println("'S'/'s': Si desea comprar ingrese S o s.");
                 System.out.println("'L'/'l': Si desea leer una guía del juego ingrese 'L' o 'l'");
                 System.out.println("Si no desea hacer lo anterior apriete cualquier otra tecla.");
                 String menu = read.nextLine();
@@ -193,6 +193,7 @@ public class Juego {
             System.out.println("Presione cualquier tecla para salir.");
             rtaSalir.nextLine();
         } else if (this.turno >= 25) {
+            System.out.println("Sobreviviste a los 25 turnos!");
             System.out.println("Has ganado! :)");
             this.turno++; //sino sigue jeje
             Scanner rtaSalir = new Scanner(System.in);

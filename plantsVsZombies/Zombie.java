@@ -37,7 +37,7 @@ public class Zombie{
         }
     }
 
-    protected static void atacar(Jardin jardin, Juego juego, Zombie zombie) {
+    protected void atacar(Jardin jardin, Juego juego, Zombie zombie) {
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
@@ -61,7 +61,7 @@ public class Zombie{
                     break;
                 }
             }
-            System.out.printf("- Un zombie ha comido a la planta '%s' en la posición (%d,%d)! T-T\n", jardin.jardinP[i][j - 1].getId(), i + 1, j - 1);
+            System.out.printf("- Un zombie ha comido a la planta '%s' que estaba en la posición (%d,%d)! T-T\n", jardin.jardinP[i][j - 1].getId(), i + 1, j);
             juego.setTotalPlantas(juego.getTotalPlantas() - 1);
             jardin.jardinP[i][j - 1] = null; //la eliminamos
             zombie.setAtacando(false); //deja de atacar
@@ -97,9 +97,6 @@ public class Zombie{
     }
     public int getX() {
         return this.x;
-    }
-    public void setX(int x) {
-        this.x = x;
     }
     public int getY() {
         return this.y;

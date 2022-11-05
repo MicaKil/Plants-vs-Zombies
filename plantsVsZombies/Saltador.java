@@ -58,7 +58,7 @@ public class Saltador extends Zombie {
                 zombie.setY(j - 2);
                 jardin.jardinZ[i][j - 2] = zombie; // realiza el salto
                 jardin.jardinZ[i][j] = null; //borramos donde estaba antes
-                System.out.printf("- El zombie 's' en la posición (%d,%d) ha saltado a la posición (%d,%d). Su nuevo ID es 'z'.\n", i + 1, j + 1, i + 1, j - 1);
+                System.out.printf("- El zombie 's' que estaba en la posición (%d,%d) ha saltado a la posición (%d,%d). Su nuevo ID es 'z'.\n", i + 1, j + 1, i + 1, j - 1);
             } else {
                 System.out.printf("- El zombie 's' en la posición (%d,%d) no ha podido saltar ya que no hay lugar. Su nuevo ID es 'z'.\n", i + 1, j + 1);
                 jardin.jardinZ[i][j].setAtacando(true);

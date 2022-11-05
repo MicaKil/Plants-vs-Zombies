@@ -12,7 +12,7 @@ public class Tienda {
         int[] posPlanta;
 
         //bucle de compra
-        boolean flagPlantas = true;
+        boolean flagPlantas = juego.getSoles() >= 25;
 
         while (flagPlantas) {
             jardin.mostrarJardin(juego);
@@ -212,6 +212,7 @@ public class Tienda {
                     case "8":
                         if (!cada5) {
                             System.out.println("La tienda de Crazy Dave no está disponible todavía.");
+                            Juego.esperar();
                         } else {
                             boolean flagDave;
                             do {
@@ -220,13 +221,14 @@ public class Tienda {
                                     Juego.esperar();
                                     flagDave = false;
                                 } else if (!hayPlantas(juego)) {
-                                    System.out.println("No tienes las plantas suficientes para la tienda de Dave. :c");
+                                    System.out.println("No tienes las plantas suficientes para la tienda de Dave.");
                                     Juego.esperar();
                                     flagDave = false;
                                 } else {
                                     flagDave = tiendaDave(juego, jardin, true);
                                 }
                             } while (flagDave);
+                            flagPlantas = false; // termina la compra actual
                         }
                         break;
                     case "9":
@@ -236,9 +238,6 @@ public class Tienda {
             } catch (NumberFormatException e) {
                 System.out.println("Debe ingresar un número");
             }
-//            if (juego.getSoles() < 25) {
-//                flagPlantas = false;
-//            }
         }
     }
 
@@ -341,11 +340,11 @@ public class Tienda {
         return(juego.getCantPatatapum() > 0 || juego.getCantGirasol() > 0 || juego.getCantRepetidora() > 0);
     }
 
-    private static boolean tiendaDave(Juego juego, Jardin jardin, boolean flagDave) {
+    private boolean tiendaDave(Juego juego, Jardin jardin, boolean flagDave) {
         Scanner read = new Scanner(System.in);
 
         System.out.println("Bienvenido a la tienda de Crazy Dave! ");
-        System.out.println("Tenemos ofertas muy especiales! (OuO)/ "); //(✧∀✧) se muestra en pantalla como ???
+        System.out.println("Tenemos ofertas muy especiales! (OuO)/ ");
         System.out.println("Ingrese el número correspondiente a la planta que quiere comprar.");
         System.out.println("1: Birasol - Costo 150 soles + Girasol\n" +
                 "2: Gasoseta - Costo 150 soles + Patatapum\n" +
@@ -375,7 +374,7 @@ public class Tienda {
                     b.danio=0;
                     b.id = 'B';
                     //recibe la planta y juego, vacía el tablero, setea soles, planta, resta girasoles
-                    plantarDave(juego, b);
+                    jardin.plantarDave(juego, b);
                     jardin.mostrarJardin(juego);
                 }
                 break;
@@ -392,7 +391,7 @@ public class Tienda {
                     int[] pos =posicionesDave('P', juego);
                     Gasoseta g = new Gasoseta(pos[0],pos[1]);
                     //recibe la planta y juego, vacía el tablero, setea soles, planta, resta patatapum
-                    plantarDave(juego, g);
+                    jardin.plantarDave(juego, g);
                     jardin.mostrarJardin(juego);
                 }
             }
@@ -412,7 +411,7 @@ public class Tienda {
                     g.setId('U');
                     g.setCosto(250);
                     //recibe la planta y juego, vacía el tablero, setea soles, planta, resta repetetidora
-                    plantarDave(juego, g);
+                    jardin.plantarDave(juego, g);
                     jardin.mostrarJardin(juego);
                 }
                 break;
