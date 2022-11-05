@@ -10,7 +10,6 @@ public class Juego {
 
     protected int soles = 200;
     protected int vidas = 3;
-
     protected int turno = 1;
     protected int totalZombies = 0;
     protected int totalPlantas = 0;
@@ -20,18 +19,16 @@ public class Juego {
     protected int hordaCounter = 0;
     protected boolean puedeSalirHorda = false;
     protected boolean haSalidoHorda = false;
-
-    Jardin jardin = new Jardin(); //asociacion
+    protected Jardin jardin = new Jardin(); //asociacion
+    protected Tienda tienda = new Tienda();
 
     public Juego() {}
 
     public void iniciar() {
-        Tienda tienda = new Tienda(); // creamos la tienda de juego
-
         while (this.turno <= 25 && this.vidas > 0) {
             System.out.printf("Turno N°%d \n", turno);
             // tienda
-            mostrarMenu(tienda);
+            mostrarMenu();
 
             // Zombies
             // ---------------------------------------------------
@@ -136,7 +133,7 @@ public class Juego {
 
     // --------------------------------------------------------------------------------------------
 
-    private void mostrarMenu(Tienda tienda) {
+    private void mostrarMenu() {
         boolean menuFlag = true;
         do {
             jardin.mostrarJardin(this);
@@ -307,6 +304,4 @@ public class Juego {
     public void setHaSalidoHorda(boolean haSalidoHorda) {
         this.haSalidoHorda = haSalidoHorda;
     }
-
-
 }

@@ -5,11 +5,11 @@ caminar. Nuez-Cáscara Rabias puede detener su salto.
 package plantsVsZombies;
 
 public class Saltador extends Zombie {
-    protected int haSaltado;
+    protected int salto;
 
     public Saltador(int coorX) {
         super(coorX);
-        haSaltado = 2;
+        salto = 2;
         this.id = 's';
     }
 
@@ -25,19 +25,19 @@ public class Saltador extends Zombie {
             jardin.jardinZ[i][j] = null; //borramos donde estaba antes
             // si al caminar queda al lado de una planta...
             if ((j - 2) >= 0 && jardin.jardinP[i][j - 2] != null ) {
-                if (this.haSaltado == 2) {
-                    this.haSaltado--;
-                } else if (this.haSaltado == 1) {
+                if (this.salto == 2) {
+                    this.salto--;
+                } else if (this.salto == 1) {
                     //System.out.println("up 1");
-                    this.haSaltado--;
+                    this.salto--;
                     saltar(jardin, juego, zombie);
                 }
             }
         // si hay algo a su izquierda..
         } if ((j - 1) >= 0 && jardin.jardinP[i][j - 1] != null ) {
-            if (this.haSaltado == 2) {
-                this.haSaltado--; // en el proximo turno salta
-            } else if (this.haSaltado == 1) {
+            if (this.salto == 2) {
+                this.salto--; // en el proximo turno salta
+            } else if (this.salto == 1) {
                 saltar(jardin, juego, zombie);
             }
         } else if (j == 0) { // si el zombie se encuentra en el limite derecho

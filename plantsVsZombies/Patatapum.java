@@ -5,7 +5,6 @@ Tiene un coste de 25 soles.
 package plantsVsZombies;
 
 public class Patatapum extends Planta {
-    protected int tiempoActivacion=1; //1 turno para que explote
     protected boolean explotar=false;
     public Patatapum(int x, int y){
         super(x,y);

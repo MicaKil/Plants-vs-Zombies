@@ -242,9 +242,6 @@ public class Tienda {
         }
     }
 
-
-
-
     private static int[] pedirPos(String tipoPlanta) {
         int fila, columna;
         int[] coor = new int[2];
@@ -330,9 +327,9 @@ public class Tienda {
     }
     //comprueba que no haya zombies ni plantas en el casillero
     //recibe el tablero y la posición de la nueva planta
-    private static boolean isCasillaVacia(Jardin t, int[] pos){
+    private static boolean isCasillaVacia(Jardin j, int[] pos){
         //si los tableros de zombies y plantas están vacíos retorna true
-        return t.jardinP[pos[0] - 1][pos[1] - 1] == null && t.jardinZ[pos[0] - 1][pos[1] - 1] == null;
+        return j.jardinP[pos[0] - 1][pos[1] - 1] == null && j.jardinZ[pos[0] - 1][pos[1] - 1] == null;
     } 
 
 
@@ -344,7 +341,7 @@ public class Tienda {
         return(juego.getCantPatatapum() > 0 || juego.getCantGirasol() > 0 || juego.getCantRepetidora() > 0);
     }
 
-    private static boolean tiendaDave(Juego juego, Jardin jardin, Boolean flagDave) {
+    private static boolean tiendaDave(Juego juego, Jardin jardin, boolean flagDave) {
         Scanner read = new Scanner(System.in);
 
         System.out.println("Bienvenido a la tienda de Crazy Dave! ");
