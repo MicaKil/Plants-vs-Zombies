@@ -14,7 +14,8 @@ public class Saltador extends Zombie {
     }
 
     @Override
-    protected void caminar(Jardin jardin, Juego juego, Zombie zombie) {
+    protected void caminar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
@@ -28,9 +29,8 @@ public class Saltador extends Zombie {
                 if (this.salto == 2) {
                     this.salto--;
                 } else if (this.salto == 1) {
-                    //System.out.println("up 1");
                     this.salto--;
-                    saltar(jardin, juego, zombie);
+                    saltar(juego, zombie);
                 }
             }
         // si hay algo a su izquierda..
@@ -38,7 +38,7 @@ public class Saltador extends Zombie {
             if (this.salto == 2) {
                 this.salto--; // en el proximo turno salta
             } else if (this.salto == 1) {
-                saltar(jardin, juego, zombie);
+                saltar(juego, zombie);
             }
         } else if (j == 0) { // si el zombie se encuentra en el limite derecho
             jardin.jardinZ[i][j] = null; //borramos donde estaba antes
@@ -46,7 +46,8 @@ public class Saltador extends Zombie {
             juego.setVidas(juego.getVidas() - 1);
         }
     }
-    private void saltar(Jardin jardin, Juego juego, Zombie zombie) {
+    private void saltar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         int i = zombie.getX();
         int j = zombie.getY();
         if ((j - 2) < 0) { // si al saltar sale del tablero

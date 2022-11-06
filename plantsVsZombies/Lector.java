@@ -11,7 +11,8 @@ public class Lector extends Zombie {
         this.vida = 125;
     }
     @Override
-    protected void caminar(Jardin jardin, Juego juego, Zombie zombie)  {
+    protected void caminar(Juego juego, Zombie zombie)  {
+        Jardin jardin = juego.jardin;
         if (zombie.getVida() > 100) {
             int i, j;
             i = zombie.getX();
@@ -31,11 +32,12 @@ public class Lector extends Zombie {
                 juego.setVidas(juego.getVidas() - 1);
             }
         } else {
-            saltar(jardin, juego, zombie);
+            saltar(juego, zombie);
         }
     }
 
-    private static void saltar(Jardin jardin, Juego juego, Zombie zombie) {
+    private static void saltar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         int x = zombie.getX();
         int y = zombie.getY();
         int k = y - 1;
@@ -52,7 +54,7 @@ public class Lector extends Zombie {
         } else {
             if (!encontroLugar) { // si no encontró lugar
                 k = y; // se queda donde está
-                System.out.printf("- El zombie lector 'l' que estaba en la posición (%d,%d) no ha podido saltar ya que no hay lugar. \n", x + 1, y + 1);
+                System.out.printf("- El zombie lector 'l' en la posición (%d,%d) no ha podido saltar ya que no hay lugar. \n", x + 1, y + 1);
             } else {
                 k++;
                 System.out.printf("- El zombie lector 'l' que estaba en la posición (%d,%d) ha saltado a la posición (%d,%d)! \n", x + 1, y + 1, x + 1, k + 1);
@@ -69,7 +71,8 @@ public class Lector extends Zombie {
     }
 
     @Override
-    protected void atacar(Jardin jardin, Juego juego, Zombie zombie) {
+    protected void atacar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         if (zombie.getVida() > 100) { //ataca normalmente
             int i, j;
             i = zombie.getX();
@@ -100,7 +103,7 @@ public class Lector extends Zombie {
                 zombie.setAtacando(false); //deja de atacar
             }
         } else {
-            saltar(jardin, juego, zombie);
+            saltar(juego, zombie);
         }
     }
 }

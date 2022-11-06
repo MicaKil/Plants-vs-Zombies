@@ -22,7 +22,7 @@ public class Zombie{
         this.atacando = false;
     }
 
-    protected void avanzar(Jardin jardin, Juego juego, Zombie zombie){
+    protected void avanzar(Juego juego, Zombie zombie){
         if (zombie.getRalentizado() == 2) { // si esta ralentizado...
             zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno
         } else { // si no
@@ -30,14 +30,15 @@ public class Zombie{
                 zombie.setRalentizado(getRalentizado() - 1); // se reduce en uno
             }
             if (zombie.isAtacando()) { //si el zombie está atacando
-                atacar(jardin, juego, zombie);
+                atacar(juego, zombie);
             } else { //si no está atacando...
-                caminar(jardin, juego, zombie);
+                caminar(juego, zombie);
             }
         }
     }
 
-    protected void atacar(Jardin jardin, Juego juego, Zombie zombie) {
+    protected void atacar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         int i, j;
         i = zombie.getX();
         j = zombie.getY();
@@ -68,7 +69,8 @@ public class Zombie{
         }
     }
 
-    protected void caminar(Jardin jardin, Juego juego, Zombie zombie) {
+    protected void caminar(Juego juego, Zombie zombie) {
+        Jardin jardin = juego.jardin;
         int i, j;
         i = zombie.getX();
         j = zombie.getY();

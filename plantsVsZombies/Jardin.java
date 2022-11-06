@@ -46,11 +46,11 @@ public class Jardin {
         int tipoZombie;
         Random rand = new Random();
 
-        if (juego.getTurno() == 10 && !juego.haSalidoHorda) { // si es el turno 10 y no ha salido una horda...
+        if (juego.getTurno() >= 10 && !juego.isHaSalidoHorda()) { // si es el turno 10 y no ha salido una horda...
             tipoZombie = 5; // sale la horda
         } else {
             int up = 5;
-            if (juego.puedeSalirHorda && juego.getHordaCounter() == 0) { //puede aparecer el abanderado si ha terminado una horda
+            if (juego.isPuedeSalirHorda() && juego.getHordaCounter() == 0) { //puede aparecer el abanderado si ha terminado una horda
                 up = 6;
             }
             tipoZombie = rand.nextInt(up);
@@ -111,7 +111,7 @@ public class Jardin {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 if (this.jardinZ[i][j] != null) {
-                    this.jardinZ[i][j].avanzar(this, juego, this.jardinZ[i][j]);
+                    this.jardinZ[i][j].avanzar(juego, this.jardinZ[i][j]);
                 }
             }
         }

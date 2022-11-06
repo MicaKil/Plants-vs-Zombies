@@ -37,7 +37,7 @@ public class Juego {
 
             //plantas
             // ---------------------------------------------------
-            if (vidas > 0 && this.totalPlantas > 0) {// no tiene sentido que ataquen si ya se perdió
+            if (vidas > 0 && this.totalPlantas > 0) {// no tiene sentido que ataquen si ya se perdió o si no hay plantas
                 fasePlantas();
                 jardin.mostrarJardin(this);
                 esperar();
@@ -283,24 +283,28 @@ public class Juego {
     public int getTurno() {
         return turno;
     }
-
     public int getTotalZombies() {
         return totalZombies;
     }
-
     public void setTotalZombies(int totalZombies) {
         this.totalZombies = totalZombies;
     }
-
     public int getTotalPlantas() {
         return totalPlantas;
     }
-
     public void setTotalPlantas(int totalPlantas) {
         this.totalPlantas = totalPlantas;
     }
-
     public void setHaSalidoHorda(boolean haSalidoHorda) {
         this.haSalidoHorda = haSalidoHorda;
+    }
+    public boolean isHaSalidoHorda() {
+        return haSalidoHorda;
+    }
+    public boolean isPuedeSalirHorda() {
+        return puedeSalirHorda;
+    }
+    public void setPuedeSalirHorda(boolean puedeSalirHorda) {
+        this.puedeSalirHorda = puedeSalirHorda;
     }
 }
