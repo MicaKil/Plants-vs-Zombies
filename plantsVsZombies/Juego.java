@@ -144,7 +144,7 @@ public class Juego {
             //agregar opcion para cancelar, volver a elegir coordenada
             System.out.println();
             if (cada5){
-                System.out.println(" *** ESTÁ DISPONIBLE LA TIENDA DE CRAZY DAVE! *** ");
+                System.out.println(" *** ESTA DISPONIBLE LA TIENDA DE CRAZY DAVE! *** ");
                 System.out.println("Para comprar en la tienda, ingrese el menu de compra.");
             } else if ((5 - this.turno%5) > 1){
                 System.out.printf("Quedan %d turnos para que aparezca la tienda de Crazy Dave!\n", (5 - this.turno%5));
@@ -163,7 +163,7 @@ public class Juego {
                 }
             } else {
                 System.out.println("Tiene: " + this.soles + " soles disponibles para comprar.");
-                System.out.println("'S'/'s': Si desea comprar ingrese S o s.");
+                System.out.println("'S'/'s': Si desea comprar ingrese 'S' o 's'.");
                 System.out.println("'L'/'l': Si desea leer una guía del juego ingrese 'L' o 'l'");
                 System.out.println("Si no desea hacer lo anterior apriete cualquier otra tecla.");
                 String menu = read.nextLine();
